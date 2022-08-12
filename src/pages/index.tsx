@@ -10,7 +10,7 @@ type LinkDetails = {
     iconComponent: any;
 }
 
-interface FixedLinksProps {
+interface SideLinksProps {
     linkList: LinkDetails[];
     revealDelay: number;
     inBetweenDelay: number;
@@ -31,52 +31,48 @@ const Home: NextPage = () => (
         </Head>
 
         <main className="min-h-screen flex flex-col font-sans">
-            {/* Fixed Links */}
-            <FixedLinks linkList={links} revealDelay={100} inBetweenDelay={200} />
+            {/* Side Links */}
+            <SideLinks linkList={links} revealDelay={100} inBetweenDelay={200} />
 
             {/* Main Content */}
-            <div className="h-screen bg-background justify-center items-center flex flex-col text-center">
+            <section className="h-screen bg-background justify-center items-center flex flex-col text-center">
                 <h1 className="text-5xl md:text-8xl leading-normal font-semibold text-white align-middle">
                     {"Hi, I'm Michael"}
                 </h1>
                 <p className="text-lg md:text-4xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
                     {"I'm a student pursuing Computer Science."}
                 </p>
-            </div>
-            <div className="h-screen bg-dark justify-center items-center flex flex-col text-center">
+            </section>
+            <section className="h-screen bg-dark justify-center items-center flex flex-col text-center">
                 <h1 className="text-5xl md:text-8xl leading-normal font-semibold text-white align-middle">
                     {"Hi, I'm Michael"}
                 </h1>
                 <p className="text-lg md:text-4xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
                     {"I'm a student pursuing Computer Science."}
                 </p>
-            </div>
+            </section>
+
+            {/* Bottom Links (Mobile) */}
         </main>
     </>
 );
 
-const FixedLinks = ({
+const SideLinks = ({
     linkList,
     revealDelay,
     inBetweenDelay,
-}: FixedLinksProps) => {
-    const [isSideLinksVisible, setSideLinksVisible] = useState(new Array(linkList.length).fill(false));
+}: SideLinksProps) => {
+    const [isSideLinksVisible, setSideLinksVisible] = useState(false);
 
     // Runs on component mount
     useEffect(() => {
-        // For each link, reveal after specified delay
-        for (let i=0; i<linkList.length; i++) {
-            const linkRevealDelay = revealDelay + (i * inBetweenDelay);
+        // Reveal after delay
+        const timeout = setTimeout(() => {
+            setSideLinksVisible(true);
+        }, revealDelay)
 
-            setTimeout(() => {
-                setSideLinksVisible((currentValues: any) => {
-                    return currentValues.map((value: boolean, index: number) => {
-                        return index == i ? true : value;
-                    })
-                })
-            }, linkRevealDelay)
-        }
-    }, []);
+        return () => clearTimeout(timeout);
+    });
 
     // Link List Items
     const sideLinkItems = linkList.map((linkItem, index) => {
@@ -86,10 +82,14 @@ const FixedLinks = ({
         const sizedIconComponent = React.cloneElement(iconComponent, { size: '2rem' });
 
         return (
-            <li key={link} className={isSideLinksVisible[index] ? "py-3 transition-all ease-in-out duration-500 delay-[0ms] opacity-100 translate-y-0" : "py-2.5 opacity-0 translate-y-8"} >
-                <a href={link} target="_blank" rel="noopener noreferrer" aria-label={description} className="text-bright h-8 opacity-60">
-                    {sizedIconComponent}
-                </a>
+            <li key={link} 
+                className={isSideLinksVisible ? `transition-all ease-in-out duration-500 opacity-100 translate-y-0` : `opacity-0 translate-y-8`} 
+                style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+                <div className="py-3">
+                    <a href={link} target="_blank" rel="noopener noreferrer" aria-label={description} className="text-bright h-8 opacity-60">
+                        {sizedIconComponent}
+                    </a>
+                </div>
             </li>
         )
     })

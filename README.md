@@ -6,6 +6,8 @@ Repo for my personal site.
 
 This site is built using Next.js and Tailwind, and is deployed through Vercel.
 
+Icons from Feather Icons (react-feather).
+
 ## Languages
 
  TypeScript

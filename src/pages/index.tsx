@@ -16,11 +16,43 @@ interface SideLinksProps {
     inBetweenDelay: number;
 }
 
+interface SkillsSectionProps {
+    languages: string[];
+    frameworks: string[];
+    tools: string[];
+}
+
 const links = [
     { description: "GitHub", link: "https://github.com/devmwang/", iconComponent: <GitHub /> },
     { description: "LinkedIn", link: "https://linkedin.com/in/devmwang/", iconComponent: <Linkedin /> },
     { description: "Email", link: "mailto:devmwang@icloud.com", iconComponent: <Mail /> },
 ];
+
+const skillsLanguages = [
+    "Python",
+    "TypeScript",
+    "JavaScript",
+    "C#",
+    "Java",
+    "Swift",
+    "HTML",
+    "CSS/Sass",
+  ];
+  
+  const skillsFrameworks = [
+      "Next.js",
+      "React",
+      "Node.js",
+      "SwiftUI",
+  ];
+  
+  const skillsTools = [
+      "Git/GitHub",
+      "Vite",
+      "Vercel",
+      "Chrome DevTools",
+      "Figma",
+  ]
 
 const Home: NextPage = () => (
     <>
@@ -45,8 +77,10 @@ const Home: NextPage = () => (
                     {"I'm a student pursuing Computer Science."}
                 </p>
             </section>
-            <section id="about" className="h-screen pt-28 bg-dark justify-center flex-col text-center">
-                <div className="container mx-auto px-10">
+
+            <section id="about" className="h-screen bg-dark justify-center flex-col text-center">
+                {/* About */}
+                <div className="container mx-auto pt-28 px-10">
                     <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
                         {"About"}
                     </h1>
@@ -56,6 +90,11 @@ const Home: NextPage = () => (
                     <p className="text-lg md:text-xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
                         {"I enjoy learning new technologies and growing my knowledge on modern frameworks. My experience creating programs spans a wide variety of platforms, ranging from interactive web and mobile apps, to native desktop software, and cutting-edge virtual reality experiences."}
                     </p>
+                </div>
+
+                {/* Skills/Knowledge */}
+                <div className="container mx-auto pt-28 px-10">
+                    <SkillsSection languages={skillsLanguages} frameworks={skillsFrameworks} tools={skillsTools}  />
                 </div>
             </section>
 
@@ -108,6 +147,86 @@ const SideLinks = ({
             </ul>
         </div>
     )
+}
+
+const SkillsSection = ({
+    languages,
+    frameworks,
+    tools,
+}: SkillsSectionProps) => {
+    const [activePanel, setActivePanel] = useState("languages");
+
+    const languageItems = languages.map((language) => {        
+        return (
+            <li key={language} className="list-none mr-6">
+                <div className="py-1.5">
+                    <span className="text-gray-400 font-medium">
+                        {language}
+                    </span>
+                </div>
+            </li>
+        )
+    });
+
+    const frameworkItems = frameworks.map((framework) => {        
+        return (
+            <li key={framework} className="list-none mr-6">
+                <div className="py-1.5">
+                    <span className="text-gray-400 font-medium">
+                        {framework}
+                    </span>
+                </div>
+            </li>
+        )
+    });
+
+    const toolItems = tools.map((tool) => {        
+        return (
+            <li key={tool} className="list-none mr-6">
+                <div className="py-1.5">
+                    <span className="text-gray-400 font-medium">
+                        {tool}
+                    </span>
+                </div>
+            </li>
+        )
+    });
+
+    return (
+        <div className="w-[258px] md:w-[414px] mx-auto">
+            <div className="flex">
+                <div className="w-max relative">
+                    <button className="flex relative w-full border-l-4 border-accent px-1 md:px-6 py-3 transition-colors hover:bg-white/10" onClick={() => setActivePanel("languages")}>
+                        <span className="text-accent text-xl font-medium">Languages</span>
+                    </button>
+                    <button className="flex relative w-full border-l-4 border-accent px-1 md:px-6 py-3 transition-colors hover:bg-white/10" onClick={() => setActivePanel("frameworks")}>
+                        <span className="text-accent text-xl font-medium">Frameworks</span>
+                    </button>
+                    <button className="flex relative w-full border-l-4 border-accent px-1 md:px-6 py-3 transition-colors hover:bg-white/10" onClick={() => setActivePanel("tools")}>
+                        <span className="text-accent text-xl font-medium">Tools</span>
+                    </button>
+                </div>
+                <div className="w-full ml-5 mt-1 block">
+                    <div className={activePanel == "languages" ? "static opacity-100 transition-all ease-in-out duration-300 delay-75" : "absolute opacity-0 transition-all ease-in-out duration-200 delay-0"}>
+                        <div className="p-2 text-left md:columns-2">
+                            {languageItems}
+                        </div>
+                    </div>
+                    <div className={activePanel == "frameworks" ? "static opacity-100 transition-all ease-in-out duration-300 delay-75" : "absolute opacity-0 transition-all ease-in-out duration-200 delay-0"}>
+                        <div className="p-2 text-left md:columns-2">
+                            {frameworkItems}
+                        </div>
+                    </div>
+                    <div className={activePanel == "tools" ? "static opacity-100 transition-all ease-in-out duration-300 delay-75" : "absolute opacity-0 transition-all ease-in-out duration-200 delay-0"}>
+                        <div className="p-2 text-left md:columns-2">
+                            {toolItems}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    );
 }
 
 export default Home;

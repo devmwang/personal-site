@@ -11,6 +11,9 @@ module.exports = {
                 'dark': '#303030',
                 'background': '#0B0B0C',
             },
+            transitionDelay: {
+                '0': '0ms',
+            },
         },
     },
     plugins: [],

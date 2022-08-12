@@ -32,7 +32,7 @@ const Home: NextPage = () => (
 
         <main className="min-h-screen flex flex-col font-sans">
             {/* Side Links */}
-            <SideLinks linkList={links} revealDelay={100} inBetweenDelay={200} />
+            <SideLinks linkList={links} revealDelay={200} inBetweenDelay={200} />
 
             {/* Main Content */}
             <section className="h-screen bg-background justify-center items-center flex flex-col text-center">

@@ -196,15 +196,24 @@ const SkillsSection = ({
         <div className="w-[258px] md:w-[414px] mx-auto">
             <div className="flex">
                 <div className="w-max relative">
-                    <button className="flex relative w-full border-l-4 border-accent px-1 md:px-6 py-3 transition-colors hover:bg-white/10" onClick={() => setActivePanel("languages")}>
-                        <span className="text-accent text-xl font-medium">Languages</span>
-                    </button>
-                    <button className="flex relative w-full border-l-4 border-accent px-1 md:px-6 py-3 transition-colors hover:bg-white/10" onClick={() => setActivePanel("frameworks")}>
-                        <span className="text-accent text-xl font-medium">Frameworks</span>
-                    </button>
-                    <button className="flex relative w-full border-l-4 border-accent px-1 md:px-6 py-3 transition-colors hover:bg-white/10" onClick={() => setActivePanel("tools")}>
-                        <span className="text-accent text-xl font-medium">Tools</span>
-                    </button>
+                    {/* <div className="border-l-4 border-accent"> */}
+                    <div className={activePanel == "languages" ? "border-l-4 border-accent transition-colors" : "border-l-4 border-accent/25 transition-colors"}>
+                        <button className="flex relative w-full px-1 md:px-6 py-3 hover:bg-white/10" onClick={() => setActivePanel("languages")}>
+                            <span className="text-accent text-xl font-medium">Languages</span>
+                        </button>
+                    </div>
+
+                    <div className={activePanel == "frameworks" ? "border-l-4 border-accent transition-colors" : "border-l-4 border-accent/25 transition-colors"}>
+                        <button className="flex relative w-full px-1 md:px-6 py-3 hover:bg-white/10" onClick={() => setActivePanel("frameworks")}>
+                            <span className="text-accent text-xl font-medium">Frameworks</span>
+                        </button>
+                    </div>
+
+                    <div className={activePanel == "tools" ? "border-l-4 border-accent transition-colors" : "border-l-4 border-accent/25 transition-colors"}>
+                        <button className="flex relative w-full px-1 md:px-6 py-3 hover:bg-white/10" onClick={() => setActivePanel("tools")}>
+                            <span className="text-accent text-xl font-medium">Tools</span>
+                        </button>
+                    </div>
                 </div>
                 <div className="w-full ml-5 mt-1 block">
                     <div className={activePanel == "languages" ? "static opacity-100 transition-all ease-in-out duration-300 delay-75" : "absolute opacity-0 transition-all ease-in-out duration-200 delay-0"}>

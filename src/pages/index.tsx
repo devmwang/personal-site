@@ -64,6 +64,7 @@ const Home: NextPage = () => (
             <meta name="description" content="Michael Wang's Personal Site, built on Next.js." />
 
             <meta name="og:title" content="Michael Wang | Personal Site" />
+            <meta name="og:description" content="Michael Wang's Personal Site, built on Next.js." />
             <meta property="og:image" content="https://www.devmwang.com/SiteLogo.png" />
             <meta property="og:url" content="https://www.devmwang.com/" />
 

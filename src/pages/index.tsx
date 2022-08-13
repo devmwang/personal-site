@@ -58,8 +58,18 @@ const Home: NextPage = () => (
     <>
         <Head>
             <title>Michael Wang</title>
-            <meta name="description" content="Michael Wang's Personal Site" />
             <link rel="icon" href="/favicon.svg" />
+
+            {/* Meta Tags */}
+            <meta name="description" content="Michael Wang | Personal Site" />
+            <meta property="og:site_name" content="Michael Wang | Personal Site" />
+            <meta property="og:title" content="Michael Wang | Personal Site" />
+            <meta property="og:description" content="Michael Wang | Personal Site"/>
+            <meta property="og:image" content="https://www.devmwang.com/favicon.svg" />
+            <meta property="og:url" content="https://www.devmwang.com/" />
+
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:site" content="@devmwang" />
         </Head>
 
         <main className="min-h-screen flex flex-col font-sans">

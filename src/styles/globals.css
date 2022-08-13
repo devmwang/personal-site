@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar {
+    @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-neutral-600;
+    @apply rounded-full;
+}

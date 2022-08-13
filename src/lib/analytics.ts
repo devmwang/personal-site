@@ -1,4 +1,4 @@
-const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID as string
+export const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL, title: string): void => {
@@ -20,6 +20,6 @@ export const event = ({ action, category, label, value }: GTagEvent): void => {
     window.gtag("event", action, {
         event_category: category,
         event_label: label,
-        value,
+        value: value,
     });
 };

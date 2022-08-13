@@ -88,7 +88,7 @@ const Home: NextPage = () => (
                 </p>
             </section>
 
-            <section id="about" className="h-screen bg-dark justify-center flex-col text-center">
+            <section id="about" className="min-h-screen h-max pb-40 bg-dark justify-center flex-col text-center">
                 {/* About */}
                 <div className="container mx-auto pt-28 px-10">
                     <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">

@@ -12,7 +12,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     const router = useRouter();
     
     const handleRouteChange = (url: URL) => {
-        console.log("test");
         /* Invoke analytics function for production only */
         if (isProd) analytics.pageview(url, document.title);
     };

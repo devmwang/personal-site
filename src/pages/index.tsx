@@ -62,6 +62,7 @@ const Home: NextPage = () => (
 
             {/* Meta Tags */}
             <meta name="description" content="Michael Wang's Personal Site, built on Next.js." />
+            <meta name="theme-color" content="#00C8C7"></meta>
 
             <meta name="og:title" content="Michael Wang | Personal Site" />
             <meta name="og:description" content="Michael Wang's Personal Site, built on Next.js." />
@@ -157,6 +158,12 @@ const SideLinks = ({
             </ul>
         </div>
     )
+}
+
+const AnimatedSubtext = ({
+    text
+}: {text: string}) => {
+
 }
 
 const SkillsSection = ({

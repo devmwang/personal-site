@@ -28,6 +28,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
     return (
         <>
+            <noscript style={{fontWeight: "bold", fontSize: "2em", backgroundColor: "red", padding: "0.5em"}}>JavaScript must be enabled for this site to function as intended. Your experience will be greatly degraded.</noscript>
+
             <Script
                 strategy="afterInteractive"
                 src={`https://www.googletagmanager.com/gtag/js?id=${analytics.GOOGLE_ANALYTICS_ID}`}

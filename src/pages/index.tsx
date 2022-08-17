@@ -16,6 +16,11 @@ interface SideLinksProps {
     inBetweenDelay: number;
 }
 
+interface AnimatedSubtextProps {
+    staticText: string;
+    animatedText: string[];
+}
+
 interface SkillsSectionProps {
     languages: string[];
     frameworks: string[];
@@ -84,9 +89,7 @@ const Home: NextPage = () => (
                     <span className="text-accent">{"Michael"}</span>
                     {"."}
                 </h1>
-                <p className="text-lg md:text-4xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
-                    {"I'm a student pursuing Computer Science."}
-                </p>
+                <AnimatedSubtext staticText={"I'm a"} animatedText={["student pursuing Computer Science.", "software developer."]} />
             </section>
 
             <section id="about" className="min-h-screen h-max pb-40 bg-dark justify-center flex-col text-center">
@@ -121,7 +124,7 @@ const SideLinks = ({
 }: SideLinksProps) => {
     const [isSideLinksVisible, setSideLinksVisible] = useState(false);
 
-    // Runs on component mount
+    // * Runs on component mount
     useEffect(() => {
         // Reveal after delay
         const timeout = setTimeout(() => {
@@ -131,11 +134,11 @@ const SideLinks = ({
         return () => clearTimeout(timeout);
     });
 
-    // Link List Items
+    // * Link List Items
     const sideLinkItems = linkList.map((linkItem, index) => {
         const { description, link, iconComponent } = linkItem;
         
-        // Pass size prop to icon component
+        // * Pass size prop to icon component
         const sizedIconComponent = React.cloneElement(iconComponent, { size: '2rem' });
 
         return (
@@ -161,9 +164,71 @@ const SideLinks = ({
 }
 
 const AnimatedSubtext = ({
-    text
-}: {text: string}) => {
+    staticText,
+    animatedText
+}: AnimatedSubtextProps) => {
+    const [staticTextComplete, setStaticTextComplete] = useState(false);
+    const [staticIndex, setStaticIndex] = useState(0);
+    const [arrayIndex, setArrayIndex] = useState(0);
+    const [stringIndex, setStringIndex] = useState(0);
+    const [reverse, setReverse] = useState(false);
+    const [lineVisible, setLineVisible] = useState(true);
 
+    // * Typewriter Effect
+    useEffect(() => {
+        // * Static Text
+        if (staticIndex == staticText.length) {
+            setStaticTextComplete(true);
+        }
+
+        // * Animated Text
+        // End of word, reverse
+        if (stringIndex === animatedText[arrayIndex]!.length + 5 && !reverse) {
+            setReverse(true);
+            return;
+        }
+
+        // End of reverse (not last word in array), set next word and reset reverse
+        if (stringIndex === -3 && arrayIndex !== animatedText.length - 1 && reverse) {
+            setArrayIndex((currVal) => currVal + 1);
+            setReverse(false);
+            return;
+        }
+
+        // End of reverse (last word in array), set first word and reset reverse
+        if (stringIndex === -3 && arrayIndex == animatedText.length - 1 && reverse) {
+            setArrayIndex(0);
+            setReverse(false);
+            return;
+        }
+
+        const textTimeout = setTimeout(() => {
+            if (staticTextComplete) {
+                setStringIndex((currVal) => currVal + (reverse ? -1 : 1));
+            } else {
+                setStaticIndex((currVal) => currVal + 1);
+            }
+
+        }, 110);
+
+        return () => clearTimeout(textTimeout);
+    }, [staticTextComplete, staticIndex, staticText, arrayIndex, stringIndex, reverse, animatedText]);
+
+    // * Blinking Line Effect
+    useEffect(() => {
+        const lineTimeout = setTimeout(() => {
+            setLineVisible((currValue) => !currValue);
+        }, 500);
+
+        return () => clearTimeout(lineTimeout);
+    }, [lineVisible]);
+
+    return (
+        <div className="text-lg md:text-4xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
+            <span>{`${staticText.substring(0, staticIndex)} ${animatedText[arrayIndex]!.substring(0, stringIndex)}`}</span>
+            <div className="relative inline-block left-2"><span className={lineVisible ? "opacity-100" : "opacity-0"}>&#95;</span></div>
+        </div>
+    )
 }
 
 const SkillsSection = ({

@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 
 import React, { useState,  useEffect } from "react";
-import { GitHub, Linkedin, Mail } from "react-feather";
+import { GitHub, Linkedin, Twitter, Mail } from "react-feather";
 
 type LinkDetails = {
     description: string;
@@ -30,6 +30,7 @@ interface SkillsSectionProps {
 const links = [
     { description: "GitHub", link: "https://github.com/devmwang/", iconComponent: <GitHub /> },
     { description: "LinkedIn", link: "https://linkedin.com/in/devmwang/", iconComponent: <Linkedin /> },
+    { description: "Twitter", link: "https://twitter.com/devmwang", iconComponent: <Twitter /> },
     { description: "Email", link: "mailto:devmwang@icloud.com", iconComponent: <Mail /> },
 ];
 

@@ -145,7 +145,7 @@ const SideLinks = ({
             <li key={link} 
                 className={isSideLinksVisible ? `transition-all ease-in-out duration-500 opacity-100 translate-y-0` : `opacity-0 translate-y-8`} 
                 style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
-                <div className="py-3">
+                <div className="py-3.5 transition-transform ease-in-out duration-300 hover:-translate-y-2">
                     <a href={link} target="_blank" rel="noopener noreferrer" aria-label={description} className="text-bright h-8 opacity-60">
                         {sizedIconComponent}
                     </a>
@@ -202,6 +202,8 @@ const AnimatedSubtext = ({
             return;
         }
 
+        const timeout = reverse ? 60 : 100;
+
         const textTimeout = setTimeout(() => {
             if (staticTextComplete) {
                 setStringIndex((currVal) => currVal + (reverse ? -1 : 1));
@@ -209,7 +211,7 @@ const AnimatedSubtext = ({
                 setStaticIndex((currVal) => currVal + 1);
             }
 
-        }, 110);
+        }, timeout);
 
         return () => clearTimeout(textTimeout);
     }, [staticTextComplete, staticIndex, staticText, arrayIndex, stringIndex, reverse, animatedText]);

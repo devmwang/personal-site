@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "@src/styles/globals.css";
 import type { AppType } from "next/dist/shared/lib/utils";
 
 import { useEffect } from "react";

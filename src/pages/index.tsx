@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-
 import React, { useState,  useEffect } from "react";
 import { GitHub, Linkedin, Twitter, Mail } from "react-feather";
+
+import styles from "@src/styles/index.module.scss";
 
 type LinkDetails = {
     description: string;
@@ -87,7 +88,8 @@ const Home: NextPage = () => (
             <section className="h-screen bg-background justify-center items-center flex flex-col text-center">
                 <h1 className="text-5xl md:text-8xl leading-normal font-semibold text-white align-middle">
                     {"Hi, I'm "}
-                    <span className="text-accent">{"Michael"}</span>
+                    {/* <span className="text-accent">{"Michael"}</span> */}
+                    <span className={styles.animatedGradientText}>{"Michael"}</span>
                     {"."}
                 </h1>
                 <AnimatedSubtext staticText={"I'm a"} animatedText={["student pursuing Computer Science.", "software developer."]} />

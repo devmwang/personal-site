@@ -184,21 +184,20 @@ const AnimatedSubtext = ({
 
         // * Animated Text
         // End of word, reverse
-        if (stringIndex === animatedText[arrayIndex]!.length + 5 && !reverse) {
+        if (stringIndex === animatedText[arrayIndex]!.length + 10 && !reverse) {
             setReverse(true);
             return;
         }
 
-        // End of reverse (not last word in array), set next word and reset reverse
-        if (stringIndex === -3 && arrayIndex !== animatedText.length - 1 && reverse) {
-            setArrayIndex((currVal) => currVal + 1);
-            setReverse(false);
-            return;
-        }
+        // End of reverse, set next word and reset reverse
+        if (stringIndex === -5 && reverse) {
+            // If last text in array, reset to first, otherwise increment array index
+            if (arrayIndex == animatedText.length - 1) {
+                setArrayIndex(0);
+            } else {
+                setArrayIndex((currVal) => currVal + 1);
+            }
 
-        // End of reverse (last word in array), set first word and reset reverse
-        if (stringIndex === -3 && arrayIndex == animatedText.length - 1 && reverse) {
-            setArrayIndex(0);
             setReverse(false);
             return;
         }

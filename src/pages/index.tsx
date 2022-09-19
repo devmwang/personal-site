@@ -329,7 +329,7 @@ const SkillsSection = ({
     return (
         <>
             <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
-                {"Skills"}
+                {"Technical Skills"}
             </h1>
             <h1 className="text-4xl md:text-5xl mt-10 leading-normal font-medium text-white align-middle">
                 {"Languages"}

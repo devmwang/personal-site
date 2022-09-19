@@ -96,7 +96,7 @@ const skillsTechnologies = [
 ]
 
 const skillsTools = [
-    { description: "Git/GitHub", iconComponent: <GithubOriginalIcon size="6rem" />},
+    { description: "Git/GitHub", iconComponent: <GithubOriginalIcon size="6rem" color="white" />},
     { description: "VS Code", iconComponent: <VscodeOriginalIcon size="6rem" />},
     { description: "Visual Studio", iconComponent: <Image src={VisualStudioIcon} width="96" alt="" />},
     { description: "JetBrains Tools", iconComponent: <JetbrainsOriginalIcon size="6rem" />},
@@ -153,8 +153,13 @@ const Home: NextPage = () => (
                 </div>
 
                 {/* Skills/Knowledge */}
-                <div className="container mx-auto pt-32 px-10">
+                <div className="container mx-auto pt-40 px-10">
                     <SkillsSection languages={skillsLanguages} technologies={skillsTechnologies} tools={skillsTools} />
+                </div>
+
+                {/* Projects */}
+                <div className="container mx-auto pt-40 px-28">
+                    <ProjectsSection />
                 </div>
             </section>
 
@@ -290,7 +295,7 @@ const SkillsSection = ({
             <div key={description} className="group inline-block px-4 py-2">
                 {iconComponent}
                 <div className="relative flex justify-center">
-                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-background rounded-xl text-center text-white text-md transition-opacity duration-200">
+                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
                         {description}
                     </span>
                 </div>
@@ -305,7 +310,7 @@ const SkillsSection = ({
             <div key={description} className="group inline-block px-4 py-2">
                 {iconComponent}
                 <div className="relative flex justify-center">
-                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-background rounded-xl text-center text-white text-md transition-opacity duration-200">
+                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
                         {description}
                     </span>
                 </div>
@@ -320,7 +325,7 @@ const SkillsSection = ({
             <div key={description} className="group inline-block px-4 py-2">
                 {iconComponent}
                 <div className="relative flex justify-center">
-                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-background rounded-xl text-center text-white text-md transition-opacity duration-200">
+                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
                         {description}
                     </span>
                 </div>
@@ -353,6 +358,103 @@ const SkillsSection = ({
             </div>
         </>   
     );
+}
+
+const ProjectsSection = () => {
+    const projects = [
+        { name: "Personal Site and Portfolio", status: "Stable", color: "LawnGreen", description: "My personal site and portfolio, built on Next.js and Tailwind CSS!", gh_link: "https://github.com/devmwang/personal-site", skills: [
+            "TypeScript",
+            "Next.js",
+            "React",
+            "Tailwind CSS",
+            "Node.js",
+        ] },
+        { name: "Personal Discord Bot", status: "Stable", color: "LawnGreen", description: "Discord Bots designed for use in private servers. Feature set based on user demands and changes often.", gh_link: "https://github.com/devmwang/DiscordBotPy", skills: [
+            "Python",
+            "discord.py",
+            "requests",
+        ] },
+        { name: "Cryptocurrency Price Discord Bots", status: "Stable", color: "LawnGreen", description: "Cluster of Discord Bots designed to display current crypto prices with alert system.", gh_link: "https://github.com/devmwang/CryptoPriceBots", skills: [
+            "Python",
+            "discord.py",
+            "requests",
+            "WebSockets",
+        ] },
+        { name: "Snow Cloud - Cloud Storage", status: "Early Planning/Development", color: "orange", description: "Snow Cloud is a full stack web app designed to function similarly to Google Drive, OneDrive, or iCloud.", gh_link: "https://github.com/SnowTechnologies/snow-cloud", skills: [
+            "TypeScript",
+            "Next.js",
+            "React",
+            "Tailwind CSS",
+            "tRPC",
+            "TanStack Query",
+            "Fastify",
+            "Prisma",
+            "Node.js",
+        ] },
+        { name: "Asset Price Display", status: "Early Development", color: "orange", description: "iOS app designed to display asset prices (stock market and cryptocurrency). Planned features include widgets and Live Activities through the WidgetKit API.", gh_link: "https://github.com/devmwang/AssetPriceDisplay", skills: [
+            "Swift",
+            "SwiftUI",
+        ] },
+        { name: "Engage Network Web App", status: "End-of-Life", color: "red", description: "Engage Network was a digital learning platform that helped connect tutors with students. The project was shelved in mid-2022.", gh_link: "https://github.com/EngageNetwork", skills: [
+            "TypeScript",
+            "JavaScript",
+            "Angular",
+            "Bootstrap 5",
+            "Express.js",
+            "MongoDB",
+            "Node.js",
+        ] },
+        { name: "File Share", status: "End-of-Life", color: "red", description: "File Share is a simple P2P application for sharing files over open and forwarded network ports. The project was shelved in late-2021.", gh_link: "https://github.com/devmwang/FileShare", skills: [
+            "C#",
+            ".NET Framework",
+            "WPF",
+        ] },
+    ]
+
+    const projectsDisplay = projects.map((project) => {
+        const { name, status, color, description, gh_link, skills } = project;
+
+        const skillsList = skills.map((skill) => {
+            return (
+                <li key={skill} className="inline-block pr-4">
+                    {skill}
+                </li>
+            )
+        });
+
+        return (
+            <li key={name} className="relative bg-gray rounded-2xl hover:-translate-y-2 transition-transform">
+                <div className="flex flex-col justify-between p-6 text-white text-left h-full">
+                    <div className="block grow">
+                        <div className="flex justify-between items-center">
+                            <div className="text-lg font-medium">{name}</div>
+                            <a href={gh_link} target="_blank" rel="noopener noreferrer" aria-label={name} className="inline-block" >
+                                <GitHub />
+                            </a>
+                        </div>
+                        <div>Status: <span style={{color: color}}>{status}</span></div>
+                        <div className="my-2">
+                            <p className="text-md">{description}</p>
+                        </div>
+                    </div>
+                    <ul className="list-none text-sm text-neutral-100 mt-2">
+                        {skillsList}
+                    </ul>
+                </div>
+            </li>
+        )
+    })
+
+    return (
+        <>
+            <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
+                {"My Projects"}
+            </h1>
+            <ul className="grid relative gap-5 grid-cols-3 list-none mt-10">
+                {projectsDisplay}
+            </ul>
+        </>
+    )
 }
 
 export default Home;

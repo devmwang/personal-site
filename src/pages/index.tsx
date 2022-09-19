@@ -18,6 +18,7 @@ import {
     ReactOriginalIcon,
     TailwindcssPlainIcon,
     NodejsOriginalIcon,
+    AngularjsOriginalIcon,
 
     GithubOriginalIcon,
     VscodeOriginalIcon,
@@ -90,7 +91,8 @@ const skillsTechnologies = [
     { description: "Prisma", iconComponent: <Image src={PrismaIcon} width="96" alt="" />},
     { description: "tRPC", iconComponent: <Image src={tRPCIcon} width="96" alt="" />},
     { description: "Node.js", iconComponent: <NodejsOriginalIcon size="6rem" />},
-    { description: "Vite.js", iconComponent: <Image src={ViteIcon} width="96" alt="" />}
+    { description: "Angular", iconComponent: <AngularjsOriginalIcon size="6rem" />},
+    { description: "Vite.js", iconComponent: <Image src={ViteIcon} width="96" alt="" />},
 ]
 
 const skillsTools = [

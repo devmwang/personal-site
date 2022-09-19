@@ -1,12 +1,12 @@
 # Personal Site
 
-Repo for my personal site.
+Repo for [my personal site](https://www.devmwang.com/).
 
 ## About
 
-This site is built using Next.js and Tailwind, and is deployed through Vercel.
+This site is built using [Next.js](https://nextjs.org/) ([React](https://reactjs.org/)) and [Tailwind](https://tailwindcss.com/), and is deployed through Vercel.
 
-Icons from Feather Icons (react-feather).
+Icons from [Feather Icons](https://feathericons.com/) (react-feather) and [Devicon](https://devicon.dev/).
 
 ## Languages
 

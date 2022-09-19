@@ -21,7 +21,7 @@ export default defineNextConfig({
             headers: [
                 {
                     key: "Content-Security-Policy",
-                    value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' https://www.googletagmanager.com",
+                    value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' cdn.jsdelivr.net; font-src 'self'; connect-src 'self' www.googletagmanager.com",
                 },
                 {
                     key: "X-Frame-Options",
@@ -41,5 +41,8 @@ export default defineNextConfig({
                 }
             ]
         }]
+    },
+    images: {
+        domains: ["cdn.jsdelivr.net"]
     }
 });

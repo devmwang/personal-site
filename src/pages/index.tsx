@@ -1,7 +1,37 @@
+import React, { useState,  useEffect } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useState,  useEffect } from "react";
+import Image from "next/future/image";
 import { GitHub, Linkedin, Twitter, Mail } from "react-feather";
+import {
+    PythonOriginalIcon,
+    TypescriptOriginalIcon,
+    JavascriptOriginalIcon,
+    CsharpOriginalIcon,
+    JavaOriginalIcon,
+    SwiftOriginalIcon,
+    Html5OriginalIcon,
+    Css3OriginalIcon,
+    SassOriginalIcon,
+
+    NextjsOriginalWordmarkIcon,
+    ReactOriginalIcon,
+    TailwindcssPlainIcon,
+    NodejsOriginalIcon,
+
+    GithubOriginalIcon,
+    VscodeOriginalIcon,
+    JetbrainsOriginalIcon
+} from "react-devicons";
+
+import FastifyIcon from "@src/public/SkillsIcons/Fastify.svg";
+import PrismaIcon from "@src/public/SkillsIcons/Prisma.svg";
+import tRPCIcon from "@src/public/SkillsIcons/tRPC.svg";
+import ViteIcon from "@src/public/SkillsIcons/Vite.svg";
+import SwiftUIIcon from "@src/public/SkillsIcons/SwiftUI.png";
+
+import VisualStudioIcon from "@src/public/SkillsIcons/VisualStudio.svg";
+import TurborepoIcon from "@src/public/SkillsIcons/Turborepo.svg";
 
 import styles from "@src/styles/index.module.scss";
 
@@ -22,10 +52,15 @@ interface AnimatedSubtextProps {
     animatedText: string[];
 }
 
+type skillsDetails = {
+    description: string;
+    iconComponent: any;
+}
+
 interface SkillsSectionProps {
-    languages: string[];
-    frameworks: string[];
-    tools: string[];
+    languages: skillsDetails[];
+    technologies: skillsDetails[];
+    tools: skillsDetails[];
 }
 
 const links = [
@@ -36,30 +71,36 @@ const links = [
 ];
 
 const skillsLanguages = [
-    "Python",
-    "TypeScript",
-    "JavaScript",
-    "C#",
-    "Java",
-    "Swift",
-    "HTML",
-    "CSS/Sass",
-  ];
-  
-  const skillsFrameworks = [
-      "Next.js",
-      "React",
-      "Node.js",
-      "SwiftUI",
-  ];
-  
-  const skillsTools = [
-      "Git/GitHub",
-      "Vite",
-      "Vercel",
-      "Chrome DevTools",
-      "Figma",
-  ]
+    { description: "Python", iconComponent: <PythonOriginalIcon size="6rem" />},
+    { description: "TypeScript", iconComponent: <TypescriptOriginalIcon size="6rem" />},
+    { description: "JavaScript", iconComponent: <JavascriptOriginalIcon size="6rem" />},
+    { description: "C#", iconComponent: <CsharpOriginalIcon size="6rem" />},
+    { description: "Java", iconComponent: <JavaOriginalIcon size="6rem" />},
+    { description: "Swift", iconComponent: <SwiftOriginalIcon size="6rem" />},
+    { description: "HTML", iconComponent: <Html5OriginalIcon size="6rem" />},
+    { description: "CSS", iconComponent: <Css3OriginalIcon size="6rem" />},
+    { description: "SCSS", iconComponent: <SassOriginalIcon size="6rem" />},
+];
+
+const skillsTechnologies = [
+    { description: "Next.js", iconComponent: <NextjsOriginalWordmarkIcon size="6rem" color="white" />},
+    { description: "React", iconComponent: <ReactOriginalIcon size="6rem" />},
+    { description: "Tailwind", iconComponent: <TailwindcssPlainIcon size="6rem" />},
+    { description: "Fastify", iconComponent: <Image src={FastifyIcon} width="96" alt="" />},
+    { description: "Prisma", iconComponent: <Image src={PrismaIcon} width="96" alt="" />},
+    { description: "tRPC", iconComponent: <Image src={tRPCIcon} width="96" alt="" />},
+    { description: "Node.js", iconComponent: <NodejsOriginalIcon size="6rem" />},
+    { description: "Vite.js", iconComponent: <Image src={ViteIcon} width="96" alt="" />}
+]
+
+const skillsTools = [
+    { description: "Git/GitHub", iconComponent: <GithubOriginalIcon size="6rem" />},
+    { description: "VS Code", iconComponent: <VscodeOriginalIcon size="6rem" />},
+    { description: "Visual Studio", iconComponent: <Image src={VisualStudioIcon} width="96" alt="" />},
+    { description: "JetBrains Tools", iconComponent: <JetbrainsOriginalIcon size="6rem" />},
+    { description: "Turborepo", iconComponent: <Image src={TurborepoIcon} height="96" alt="" />},
+]
+
 
 const Home: NextPage = () => (
     <>
@@ -110,8 +151,8 @@ const Home: NextPage = () => (
                 </div>
 
                 {/* Skills/Knowledge */}
-                <div className="container mx-auto pt-28 px-10">
-                    <SkillsSection languages={skillsLanguages} frameworks={skillsFrameworks} tools={skillsTools}  />
+                <div className="container mx-auto pt-32 px-10">
+                    <SkillsSection languages={skillsLanguages} technologies={skillsTechnologies} tools={skillsTools} />
                 </div>
             </section>
 
@@ -237,90 +278,78 @@ const AnimatedSubtext = ({
 
 const SkillsSection = ({
     languages,
-    frameworks,
-    tools,
+    technologies,
+    tools
 }: SkillsSectionProps) => {
-    const [activePanel, setActivePanel] = useState("languages");
+    const languagesDisplay = languages.map((language) => {
+        const { description, iconComponent } = language;
 
-    const languageItems = languages.map((language) => {        
         return (
-            <li key={language} className="list-none mr-6">
-                <div className="py-1.5">
-                    <span className="text-gray-400 font-medium">
-                        {language}
+            <div key={description} className="group inline-block px-4 py-2">
+                {iconComponent}
+                <div className="relative flex justify-center">
+                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-background rounded-xl text-center text-white text-md transition-opacity duration-200">
+                        {description}
                     </span>
                 </div>
-            </li>
+            </div>
         )
     });
 
-    const frameworkItems = frameworks.map((framework) => {        
+    const technologiesDisplay = technologies.map((technology) => {
+        const { description, iconComponent } = technology;
+
         return (
-            <li key={framework} className="list-none mr-6">
-                <div className="py-1.5">
-                    <span className="text-gray-400 font-medium">
-                        {framework}
+            <div key={description} className="group inline-block px-4 py-2">
+                {iconComponent}
+                <div className="relative flex justify-center">
+                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-background rounded-xl text-center text-white text-md transition-opacity duration-200">
+                        {description}
                     </span>
                 </div>
-            </li>
+            </div>
         )
     });
 
-    const toolItems = tools.map((tool) => {        
+    const toolsDisplay = tools.map((tool) => {
+        const { description, iconComponent } = tool;
+
         return (
-            <li key={tool} className="list-none mr-6">
-                <div className="py-1.5">
-                    <span className="text-gray-400 font-medium">
-                        {tool}
+            <div key={description} className="group inline-block px-4 py-2">
+                {iconComponent}
+                <div className="relative flex justify-center">
+                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-background rounded-xl text-center text-white text-md transition-opacity duration-200">
+                        {description}
                     </span>
                 </div>
-            </li>
+            </div>
         )
     });
 
     return (
-        <div className="w-[258px] md:w-[414px] mx-auto">
-            <div className="flex">
-                <div className="w-max relative">
-                    {/* <div className="border-l-4 border-accent"> */}
-                    <div className={activePanel == "languages" ? "border-l-4 border-accent transition-colors" : "border-l-4 border-accent/25 transition-colors"}>
-                        <button className="flex relative w-full px-1 md:px-6 py-3 hover:bg-white/10" onClick={() => setActivePanel("languages")}>
-                            <span className="text-accent text-xl font-medium">Languages</span>
-                        </button>
-                    </div>
-
-                    <div className={activePanel == "frameworks" ? "border-l-4 border-accent transition-colors" : "border-l-4 border-accent/25 transition-colors"}>
-                        <button className="flex relative w-full px-1 md:px-6 py-3 hover:bg-white/10" onClick={() => setActivePanel("frameworks")}>
-                            <span className="text-accent text-xl font-medium">Frameworks</span>
-                        </button>
-                    </div>
-
-                    <div className={activePanel == "tools" ? "border-l-4 border-accent transition-colors" : "border-l-4 border-accent/25 transition-colors"}>
-                        <button className="flex relative w-full px-1 md:px-6 py-3 hover:bg-white/10" onClick={() => setActivePanel("tools")}>
-                            <span className="text-accent text-xl font-medium">Tools</span>
-                        </button>
-                    </div>
-                </div>
-                <div className="w-full ml-5 mt-1 block">
-                    <div className={activePanel == "languages" ? "static opacity-100 transition-all ease-in-out duration-300 delay-75" : "absolute opacity-0 transition-all ease-in-out duration-200 delay-0"}>
-                        <div className="p-2 text-left md:columns-2">
-                            {languageItems}
-                        </div>
-                    </div>
-                    <div className={activePanel == "frameworks" ? "static opacity-100 transition-all ease-in-out duration-300 delay-75" : "absolute opacity-0 transition-all ease-in-out duration-200 delay-0"}>
-                        <div className="p-2 text-left md:columns-2">
-                            {frameworkItems}
-                        </div>
-                    </div>
-                    <div className={activePanel == "tools" ? "static opacity-100 transition-all ease-in-out duration-300 delay-75" : "absolute opacity-0 transition-all ease-in-out duration-200 delay-0"}>
-                        <div className="p-2 text-left md:columns-2">
-                            {toolItems}
-                        </div>
-                    </div>
-                </div>
+        <>
+            <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
+                {"Skills"}
+            </h1>
+            <h1 className="text-4xl md:text-5xl mt-10 leading-normal font-medium text-white align-middle">
+                {"Languages"}
+            </h1>
+            <div className="mt-8">
+                {languagesDisplay}
             </div>
-
-        </div>
+            <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
+                {"Technologies"}
+            </h1>
+            <div className="mt-8">
+                {technologiesDisplay}
+            </div>
+            <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
+                {"Tools"}
+            </h1>
+            <div className="mt-8">
+                {toolsDisplay}
+            </div>
+        </>   
     );
 }
 

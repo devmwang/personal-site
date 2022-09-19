@@ -362,14 +362,25 @@ const SkillsSection = ({
 
 const ProjectsSection = () => {
     const projects = [
-        { name: "Personal Site and Portfolio", status: "Stable", description: "My personal site and portfolio, built on Next.js and Tailwind CSS!", gh_link: "https://github.com/devmwang/personal-site", skills: [
+        { name: "Personal Site and Portfolio", status: "Stable", color: "LawnGreen", description: "My personal site and portfolio, built on Next.js and Tailwind CSS!", gh_link: "https://github.com/devmwang/personal-site", skills: [
             "TypeScript",
             "Next.js",
             "React",
             "Tailwind CSS",
             "Node.js",
         ] },
-        { name: "Snow Cloud - Cloud Storage", status: "Early Planning/Development", description: "Snow Cloud is a full stack web app designed to function similarly to Google Drive, OneDrive, or iCloud.", gh_link: "https://github.com/SnowTechnologies/snow-cloud", skills: [
+        { name: "Personal Discord Bot", status: "Stable", color: "LawnGreen", description: "Discord Bots designed for use in private servers. Feature set based on user demands and changes often.", gh_link: "https://github.com/devmwang/DiscordBotPy", skills: [
+            "Python",
+            "discord.py",
+            "requests",
+        ] },
+        { name: "Cryptocurrency Price Discord Bots", status: "Stable", color: "LawnGreen", description: "Cluster of Discord Bots designed to display current crypto prices with alert system.", gh_link: "https://github.com/devmwang/CryptoPriceBots", skills: [
+            "Python",
+            "discord.py",
+            "requests",
+            "WebSockets",
+        ] },
+        { name: "Snow Cloud - Cloud Storage", status: "Early Planning/Development", color: "orange", description: "Snow Cloud is a full stack web app designed to function similarly to Google Drive, OneDrive, or iCloud.", gh_link: "https://github.com/SnowTechnologies/snow-cloud", skills: [
             "TypeScript",
             "Next.js",
             "React",
@@ -380,22 +391,11 @@ const ProjectsSection = () => {
             "Prisma",
             "Node.js",
         ] },
-        { name: "Personal Discord Bot", status: "Stable", description: "Discord Bots designed for use in private servers. Feature set based on user demands and changes often.", gh_link: "https://github.com/devmwang/DiscordBotPy", skills: [
-            "Python",
-            "discord.py",
-            "requests",
-        ] },
-        { name: "Cryptocurrency Price Discord Bots", status: "Stable", description: "Cluster of Discord Bots designed to display current crypto prices with alert system.", gh_link: "https://github.com/devmwang/CryptoPriceBots", skills: [
-            "Python",
-            "discord.py",
-            "requests",
-            "WebSockets",
-        ] },
-        { name: "Asset Price Display", status: "Early Development", description: "iOS app designed to display asset prices (stock market and cryptocurrency). Planned features include widgets and Live Activities through the WidgetKit API.", gh_link: "https://github.com/devmwang/AssetPriceDisplay", skills: [
+        { name: "Asset Price Display", status: "Early Development", color: "orange", description: "iOS app designed to display asset prices (stock market and cryptocurrency). Planned features include widgets and Live Activities through the WidgetKit API.", gh_link: "https://github.com/devmwang/AssetPriceDisplay", skills: [
             "Swift",
             "SwiftUI",
         ] },
-        { name: "Engage Network Web App", status: "End-of-Life", description: "Engage Network was a digital learning platform that helped connect tutors with students. The project was shelved in mid-2022.", gh_link: "https://github.com/EngageNetwork", skills: [
+        { name: "Engage Network Web App", status: "End-of-Life", color: "red", description: "Engage Network was a digital learning platform that helped connect tutors with students. The project was shelved in mid-2022.", gh_link: "https://github.com/EngageNetwork", skills: [
             "TypeScript",
             "JavaScript",
             "Angular",
@@ -404,7 +404,7 @@ const ProjectsSection = () => {
             "MongoDB",
             "Node.js",
         ] },
-        { name: "File Share", status: "End-of-Life", description: "File Share is a simple P2P application for sharing files over open and forwarded network ports. The project was shelved in late-2021.", gh_link: "https://github.com/devmwang/FileShare", skills: [
+        { name: "File Share", status: "End-of-Life", color: "red", description: "File Share is a simple P2P application for sharing files over open and forwarded network ports. The project was shelved in late-2021.", gh_link: "https://github.com/devmwang/FileShare", skills: [
             "C#",
             ".NET Framework",
             "WPF",
@@ -412,7 +412,7 @@ const ProjectsSection = () => {
     ]
 
     const projectsDisplay = projects.map((project) => {
-        const { name, status, description, gh_link, skills } = project;
+        const { name, status, color, description, gh_link, skills } = project;
 
         const skillsList = skills.map((skill) => {
             return (
@@ -432,6 +432,7 @@ const ProjectsSection = () => {
                                 <GitHub />
                             </a>
                         </div>
+                        <div>Status: <span style={{color: color}}>{status}</span></div>
                         <div className="my-2">
                             <p className="text-md">{description}</p>
                         </div>

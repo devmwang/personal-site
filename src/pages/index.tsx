@@ -450,7 +450,7 @@ const ProjectsSection = () => {
             <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
                 {"My Projects"}
             </h1>
-            <ul className="grid relative gap-5 grid-cols-3 list-none mt-10">
+            <ul className="grid relative gap-5 lg:grid-cols-2 2xl:grid-cols-3 list-none mt-10">
                 {projectsDisplay}
             </ul>
         </>

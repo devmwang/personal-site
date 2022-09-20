@@ -283,7 +283,7 @@ const SkillsSection = () => {
             const { description, iconComponent } = item;
 
             return (
-                <div key={description} className="group inline-block px-4 py-2">
+                <div key={description} className="group inline-block px-4 py-2 hover:-translate-y-2 transition-transform">
                     {iconComponent}
                     <div className="relative flex justify-center">
                         <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">

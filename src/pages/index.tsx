@@ -91,7 +91,7 @@ const Home: NextPage = () => (
 
             {/* Main Content */}
             <section className="h-screen bg-background justify-center items-center flex flex-col text-center">
-                <h1 className="text-5xl md:text-8xl leading-normal font-semibold text-white align-middle">
+                <h1 className="text-5xl sm:text-7xl md:text-8xl leading-normal font-semibold text-white align-middle">
                     {"Hi, I'm "}
                     {/* <span className="text-accent">{"Michael"}</span> */}
                     <span className={styles.animatedGradientText}>{"Michael"}</span>
@@ -238,7 +238,7 @@ const AnimatedSubtext = ({
     }, [lineVisible]);
 
     return (
-        <div className="text-lg md:text-4xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
+        <div className="text-lg sm:text-3xl md:text-4xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
             <span>{`${staticText.substring(0, staticIndex)} ${animatedText[arrayIndex]!.substring(0, stringIndex)}`}</span>
             <div className="relative inline-block left-2"><span className={lineVisible ? "opacity-100" : "opacity-0"}>&#95;</span></div>
         </div>

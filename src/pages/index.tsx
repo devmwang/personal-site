@@ -168,7 +168,7 @@ const SideLinks = ({
     })
 
     return (
-        <div className="fixed w-8 bottom-10 left-12">
+        <div className="fixed w-8 bottom-4 sm:bottom-10 left-4 sm:left-12">
             <ul className="list-none">
                 {sideLinkItems}
             </ul>

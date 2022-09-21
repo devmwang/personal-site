@@ -283,7 +283,7 @@ const SkillsSection = () => {
             const { description, iconComponent } = item;
 
             return (
-                <div key={description} className="group inline-block px-4 py-2 hover:-translate-y-2 transition-transform">
+                <div key={description} className="group inline-block px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform">
                     {iconComponent}
                     <div className="relative flex justify-center">
                         <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
@@ -389,7 +389,7 @@ const ProjectsSection = () => {
         });
 
         return (
-            <li key={name} className="relative bg-gray rounded-2xl hover:-translate-y-2 transition-transform">
+            <li key={name} className="relative bg-gray rounded-2xl hover:scale-105 transition-transform">
                 <div className="flex flex-col justify-between p-6 text-white text-left h-full">
                     <div className="block grow">
                         <div className="flex justify-between items-center">

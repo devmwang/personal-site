@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState,  useEffect, useRef } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/future/image";
@@ -87,7 +87,7 @@ const Home: NextPage = () => (
 
                 {/* Skills/Knowledge */}
                 <div className="container mx-auto pt-40 px-10">
-                    <SkillsSection />
+                    <SkillsSection inBetweenDelay={50} />
                 </div>
 
                 {/* Projects */}
@@ -216,52 +216,115 @@ const AnimatedSubtext = ({
     )
 }
 
-const SkillsSection = () => {
+const SkillsSection = ({ inBetweenDelay }: { inBetweenDelay: number }) => {
+    const [isLanguagesVisible, setLanguagesVisible] = useState(false);
+    const [isTechnologiesVisible, setTechnologiesVisible] = useState(false);
+    const [isToolsVisible, setToolsVisible] = useState(false);
 
+    const languagesContainer = useRef(null)
+    const technologiesContainer = useRef(null)
+    const toolsContainer = useRef(null)
 
-    const displayFormatter = (itemArray: IconDetails[]) => {
-        return itemArray.map((item) => {
-            const { description, iconComponent } = item;
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0]
+            if (entry!.isIntersecting) {
+                if (entry!.target == languagesContainer.current) {
+                    setLanguagesVisible(true);
+                } else if (entry!.target == technologiesContainer.current) {
+                    setTechnologiesVisible(true);
+                } else if (entry!.target == toolsContainer.current) {
+                    setToolsVisible(true);
+                }
+            }
+        }, {threshold: 1.0})
 
-            return (
-                <div key={description} className="group inline-block px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform">
-                    {iconComponent}
-                    <div className="relative flex justify-center">
-                        <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
-                            {description}
-                        </span>
-                    </div>
-                </div>
-            )
-        })
+        const localLanguagesContainer = languagesContainer.current;
+        const localTechnologiesContainer = technologiesContainer.current;
+        const localToolsContainer = toolsContainer.current;
+
+        if (localLanguagesContainer) observer.observe(localLanguagesContainer)
+        if (localTechnologiesContainer) observer.observe(localTechnologiesContainer)
+        if (localToolsContainer) observer.observe(localToolsContainer)
+
+        return () => {
+            if (localLanguagesContainer) observer.unobserve(localLanguagesContainer)
+            if (localTechnologiesContainer) observer.unobserve(localTechnologiesContainer)
+            if (localToolsContainer) observer.unobserve(localToolsContainer)
+        }
+    })
+
+    const itemDisplayFormatter = (item: IconDetails) => {
+
     }
 
-    const languagesDisplay = displayFormatter(static_data.languages);
-    const technologiesDisplay = displayFormatter(static_data.technologies);
-    const toolsDisplay = displayFormatter(static_data.tools);
+    const displayFormatter = (item: IconDetails) => {
+        const { description, iconComponent } = item;
+
+        return (
+            <div className="group px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform">
+                {iconComponent}
+                <div className="relative flex justify-center">
+                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
+                        {description}
+                    </span>
+                </div>
+            </div>
+        )
+    }
+
+    const languagesDisplay = static_data.languages.map((item, index) => {
+        return (
+            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isLanguagesVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+                {displayFormatter(item)}
+            </div>
+        )
+    })
+
+    const technologiesDisplay = static_data.technologies.map((item, index) => {
+        return (
+            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isTechnologiesVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+                {displayFormatter(item)}
+            </div>
+        )
+    })
+
+    const toolsDisplay = static_data.tools.map((item, index) => {
+        return (
+            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isToolsVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+                {displayFormatter(item)}
+            </div>
+        )
+    })
 
     return (
         <>
             <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
                 {"Technical Skills"}
             </h1>
-            <h1 className="text-4xl md:text-5xl mt-10 leading-normal font-medium text-white align-middle">
-                {"Languages"}
-            </h1>
-            <div className="mt-8">
-                {languagesDisplay}
+            <div ref={languagesContainer}>
+                <h1 className="text-4xl md:text-5xl mt-10 leading-normal font-medium text-white align-middle">
+                    {"Languages"}
+                </h1>
+                <div className="mt-8">
+                    {languagesDisplay}
+                </div>
             </div>
-            <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
-                {"Technologies"}
-            </h1>
-            <div className="mt-8">
-                {technologiesDisplay}
+            <div ref={technologiesContainer}>
+                <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
+                    {"Technologies"}
+                </h1>
+                <div className="mt-8">
+                    {technologiesDisplay}
+                </div>
             </div>
-            <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
-                {"Tools"}
-            </h1>
-            <div className="mt-8">
-                {toolsDisplay}
+            <div ref={toolsContainer}>
+                <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
+                    {"Tools"}
+                </h1>
+                <div className="mt-8">
+                    {toolsDisplay}
+                </div>
             </div>
         </>   
     );

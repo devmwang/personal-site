@@ -5,7 +5,7 @@ import Image from "next/future/image";
 import { GitHub, Linkedin, Twitter, Mail } from "react-feather";
 
 import styles from "@src/styles/index.module.scss";
-import * as static_data from "../pages/components/index_static_data";
+import * as static_data from "../static/index_data";
 
 type LinkDetails = {
     description: string;

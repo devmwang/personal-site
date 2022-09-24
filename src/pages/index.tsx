@@ -1,40 +1,11 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState,  useEffect, useRef } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/future/image";
 import { GitHub, Linkedin, Twitter, Mail } from "react-feather";
-import {
-    PythonOriginalIcon,
-    TypescriptOriginalIcon,
-    JavascriptOriginalIcon,
-    CsharpOriginalIcon,
-    JavaOriginalIcon,
-    SwiftOriginalIcon,
-    Html5OriginalIcon,
-    Css3OriginalIcon,
-    SassOriginalIcon,
-
-    NextjsOriginalWordmarkIcon,
-    ReactOriginalIcon,
-    TailwindcssPlainIcon,
-    NodejsOriginalIcon,
-    AngularjsOriginalIcon,
-
-    GithubOriginalIcon,
-    VscodeOriginalIcon,
-    JetbrainsOriginalIcon
-} from "react-devicons";
-
-import FastifyIcon from "@src/public/SkillsIcons/Fastify.svg";
-import PrismaIcon from "@src/public/SkillsIcons/Prisma.svg";
-import tRPCIcon from "@src/public/SkillsIcons/tRPC.svg";
-import ViteIcon from "@src/public/SkillsIcons/Vite.svg";
-import SwiftUIIcon from "@src/public/SkillsIcons/SwiftUI.png";
-
-import VisualStudioIcon from "@src/public/SkillsIcons/VisualStudio.svg";
-import TurborepoIcon from "@src/public/SkillsIcons/Turborepo.svg";
 
 import styles from "@src/styles/index.module.scss";
+import * as static_data from "../static/index_data";
 
 type LinkDetails = {
     description: string;
@@ -116,7 +87,7 @@ const Home: NextPage = () => (
 
                 {/* Skills/Knowledge */}
                 <div className="container mx-auto pt-40 px-10">
-                    <SkillsSection />
+                    <SkillsSection inBetweenDelay={50} />
                 </div>
 
                 {/* Projects */}
@@ -245,82 +216,115 @@ const AnimatedSubtext = ({
     )
 }
 
-const SkillsSection = () => {
-    const languages = [
-        { description: "Python", iconComponent: <PythonOriginalIcon size="6rem" />},
-        { description: "TypeScript", iconComponent: <TypescriptOriginalIcon size="6rem" />},
-        { description: "JavaScript", iconComponent: <JavascriptOriginalIcon size="6rem" />},
-        { description: "C#", iconComponent: <CsharpOriginalIcon size="6rem" />},
-        { description: "Java", iconComponent: <JavaOriginalIcon size="6rem" />},
-        { description: "Swift", iconComponent: <SwiftOriginalIcon size="6rem" />},
-        { description: "HTML", iconComponent: <Html5OriginalIcon size="6rem" />},
-        { description: "CSS", iconComponent: <Css3OriginalIcon size="6rem" />},
-        { description: "SCSS", iconComponent: <SassOriginalIcon size="6rem" />},
-    ];
+const SkillsSection = ({ inBetweenDelay }: { inBetweenDelay: number }) => {
+    const [isLanguagesVisible, setLanguagesVisible] = useState(false);
+    const [isTechnologiesVisible, setTechnologiesVisible] = useState(false);
+    const [isToolsVisible, setToolsVisible] = useState(false);
 
-    const technologies = [
-        { description: "Next.js", iconComponent: <NextjsOriginalWordmarkIcon size="6rem" color="white" />},
-        { description: "React", iconComponent: <ReactOriginalIcon size="6rem" />},
-        { description: "Tailwind", iconComponent: <TailwindcssPlainIcon size="6rem" />},
-        { description: "Fastify", iconComponent: <Image src={FastifyIcon} width="96" alt="" />},
-        { description: "Prisma", iconComponent: <Image src={PrismaIcon} width="96" alt="" />},
-        { description: "tRPC", iconComponent: <Image src={tRPCIcon} width="96" alt="" />},
-        { description: "Node.js", iconComponent: <NodejsOriginalIcon size="6rem" />},
-        { description: "Angular", iconComponent: <AngularjsOriginalIcon size="6rem" />},
-        { description: "Vite.js", iconComponent: <Image src={ViteIcon} width="96" alt="" />},
-    ]
+    const languagesContainer = useRef(null)
+    const technologiesContainer = useRef(null)
+    const toolsContainer = useRef(null)
 
-    const tools = [
-        { description: "Git/GitHub", iconComponent: <GithubOriginalIcon size="6rem" color="white" />},
-        { description: "VS Code", iconComponent: <VscodeOriginalIcon size="6rem" />},
-        { description: "Visual Studio", iconComponent: <Image src={VisualStudioIcon} width="96" alt="" />},
-        { description: "JetBrains Tools", iconComponent: <JetbrainsOriginalIcon size="6rem" />},
-        { description: "Turborepo", iconComponent: <Image src={TurborepoIcon} height="96" alt="" />},
-    ]
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const entry = entries[0]
+            if (entry!.isIntersecting) {
+                if (entry!.target == languagesContainer.current) {
+                    setLanguagesVisible(true);
+                } else if (entry!.target == technologiesContainer.current) {
+                    setTechnologiesVisible(true);
+                } else if (entry!.target == toolsContainer.current) {
+                    setToolsVisible(true);
+                }
+            }
+        }, {threshold: 1.0})
 
-    const displayFormatter = (itemArray: IconDetails[]) => {
-        return itemArray.map((item) => {
-            const { description, iconComponent } = item;
+        const localLanguagesContainer = languagesContainer.current;
+        const localTechnologiesContainer = technologiesContainer.current;
+        const localToolsContainer = toolsContainer.current;
 
-            return (
-                <div key={description} className="group inline-block px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform">
-                    {iconComponent}
-                    <div className="relative flex justify-center">
-                        <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
-                            {description}
-                        </span>
-                    </div>
-                </div>
-            )
-        })
+        if (localLanguagesContainer) observer.observe(localLanguagesContainer)
+        if (localTechnologiesContainer) observer.observe(localTechnologiesContainer)
+        if (localToolsContainer) observer.observe(localToolsContainer)
+
+        return () => {
+            if (localLanguagesContainer) observer.unobserve(localLanguagesContainer)
+            if (localTechnologiesContainer) observer.unobserve(localTechnologiesContainer)
+            if (localToolsContainer) observer.unobserve(localToolsContainer)
+        }
+    })
+
+    const itemDisplayFormatter = (item: IconDetails) => {
+
     }
 
-    const languagesDisplay = displayFormatter(languages);
-    const technologiesDisplay = displayFormatter(technologies);
-    const toolsDisplay = displayFormatter(tools);
+    const displayFormatter = (item: IconDetails) => {
+        const { description, iconComponent } = item;
+
+        return (
+            <div className="group px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform">
+                {iconComponent}
+                <div className="relative flex justify-center">
+                    <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
+                        {description}
+                    </span>
+                </div>
+            </div>
+        )
+    }
+
+    const languagesDisplay = static_data.languages.map((item, index) => {
+        return (
+            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isLanguagesVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+                {displayFormatter(item)}
+            </div>
+        )
+    })
+
+    const technologiesDisplay = static_data.technologies.map((item, index) => {
+        return (
+            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isTechnologiesVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+                {displayFormatter(item)}
+            </div>
+        )
+    })
+
+    const toolsDisplay = static_data.tools.map((item, index) => {
+        return (
+            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isToolsVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+                {displayFormatter(item)}
+            </div>
+        )
+    })
 
     return (
         <>
             <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
                 {"Technical Skills"}
             </h1>
-            <h1 className="text-4xl md:text-5xl mt-10 leading-normal font-medium text-white align-middle">
-                {"Languages"}
-            </h1>
-            <div className="mt-8">
-                {languagesDisplay}
+            <div ref={languagesContainer}>
+                <h1 className="text-4xl md:text-5xl mt-10 leading-normal font-medium text-white align-middle">
+                    {"Languages"}
+                </h1>
+                <div className="mt-8">
+                    {languagesDisplay}
+                </div>
             </div>
-            <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
-                {"Technologies"}
-            </h1>
-            <div className="mt-8">
-                {technologiesDisplay}
+            <div ref={technologiesContainer}>
+                <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
+                    {"Technologies"}
+                </h1>
+                <div className="mt-8">
+                    {technologiesDisplay}
+                </div>
             </div>
-            <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
-                {"Tools"}
-            </h1>
-            <div className="mt-8">
-                {toolsDisplay}
+            <div ref={toolsContainer}>
+                <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
+                    {"Tools"}
+                </h1>
+                <div className="mt-8">
+                    {toolsDisplay}
+                </div>
             </div>
         </>   
     );

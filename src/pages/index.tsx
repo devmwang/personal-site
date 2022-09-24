@@ -87,7 +87,7 @@ const Home: NextPage = () => (
 
                 {/* Skills/Knowledge */}
                 <div className="container mx-auto pt-40 px-10">
-                    <SkillsSection inBetweenDelay={50} />
+                    <SkillsSection baseDelay={200} inBetweenDelay={50} />
                 </div>
 
                 {/* Projects */}
@@ -216,47 +216,105 @@ const AnimatedSubtext = ({
     )
 }
 
-const SkillsSection = ({ inBetweenDelay }: { inBetweenDelay: number }) => {
+const SkillsSection = ({ baseDelay, inBetweenDelay }: { baseDelay: number, inBetweenDelay: number }) => {
+    // Visibility States
+    const [isSectionTitleVisible, setSectionTitleVisible] = useState(false);
+
+    const [isLanguagesTitleVisible, setLanguagesTitleVisible] = useState(false);
     const [isLanguagesVisible, setLanguagesVisible] = useState(false);
+
+    const [isTechnologiesTitleVisible, setTechnologiesTitleVisible] = useState(false);
     const [isTechnologiesVisible, setTechnologiesVisible] = useState(false);
+
+    const [isToolsTitleVisible, setToolsTitleVisible] = useState(false);
     const [isToolsVisible, setToolsVisible] = useState(false);
 
+    // useRefs
+    const sectionTitle = useRef(null)
+
+    const languagesTitle = useRef(null)
     const languagesContainer = useRef(null)
+    
+    const technologiesTitle = useRef(null)
     const technologiesContainer = useRef(null)
+
+    const toolsTitle = useRef(null)
     const toolsContainer = useRef(null)
 
+    // On mount
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             const entry = entries[0]
+
+
             if (entry!.isIntersecting) {
-                if (entry!.target == languagesContainer.current) {
-                    setLanguagesVisible(true);
-                } else if (entry!.target == technologiesContainer.current) {
-                    setTechnologiesVisible(true);
-                } else if (entry!.target == toolsContainer.current) {
-                    setToolsVisible(true);
+                switch (entry!.target) {
+                    case sectionTitle.current:
+                        setSectionTitleVisible(true);
+                        break;
+
+                    case languagesTitle.current:
+                        setLanguagesTitleVisible(true);
+                        break;
+
+                    case languagesContainer.current:
+                        setLanguagesVisible(true);
+                        break;
+
+                    case technologiesTitle.current:
+                        setTechnologiesTitleVisible(true);
+                        break;
+
+                    case technologiesContainer.current:
+                        setTechnologiesVisible(true);
+                        break;
+
+                    case toolsTitle.current:
+                        setToolsTitleVisible(true);
+                        break;
+
+                    case toolsContainer.current:
+                        setToolsVisible(true);
+                        break;
                 }
             }
-        }, {threshold: 1.0})
+        }, { rootMargin: "-2%", threshold: 1.0 })
 
+        const localSectionTitle = sectionTitle.current;
+
+        const localLanguagesTitle = languagesTitle.current;
         const localLanguagesContainer = languagesContainer.current;
+
+        const localTechnologiesTitle = technologiesTitle.current;
         const localTechnologiesContainer = technologiesContainer.current;
+
+        const localToolsTitle = toolsTitle.current;
         const localToolsContainer = toolsContainer.current;
 
-        if (localLanguagesContainer) observer.observe(localLanguagesContainer)
-        if (localTechnologiesContainer) observer.observe(localTechnologiesContainer)
-        if (localToolsContainer) observer.observe(localToolsContainer)
+        if (localSectionTitle) observer.observe(localSectionTitle);
+
+        if (localLanguagesTitle) observer.observe(localLanguagesTitle);
+        if (localLanguagesContainer) observer.observe(localLanguagesContainer);
+
+        if (localTechnologiesTitle) observer.observe(localTechnologiesTitle);
+        if (localTechnologiesContainer) observer.observe(localTechnologiesContainer);
+
+        if (localToolsTitle) observer.observe(localToolsTitle);
+        if (localToolsContainer) observer.observe(localToolsContainer);
 
         return () => {
-            if (localLanguagesContainer) observer.unobserve(localLanguagesContainer)
-            if (localTechnologiesContainer) observer.unobserve(localTechnologiesContainer)
-            if (localToolsContainer) observer.unobserve(localToolsContainer)
+            if (localSectionTitle) observer.unobserve(localSectionTitle);
+
+            if (localLanguagesTitle) observer.unobserve(localLanguagesTitle);
+            if (localLanguagesContainer) observer.unobserve(localLanguagesContainer);
+
+            if (localTechnologiesTitle) observer.unobserve(localTechnologiesTitle);
+            if (localTechnologiesContainer) observer.unobserve(localTechnologiesContainer);
+
+            if (localToolsTitle) observer.unobserve(localToolsTitle);
+            if (localToolsContainer) observer.unobserve(localToolsContainer);
         }
     })
-
-    const itemDisplayFormatter = (item: IconDetails) => {
-
-    }
 
     const displayFormatter = (item: IconDetails) => {
         const { description, iconComponent } = item;
@@ -273,9 +331,13 @@ const SkillsSection = ({ inBetweenDelay }: { inBetweenDelay: number }) => {
         )
     }
 
+    const visibleInvisibleClassNames = "inline-block transition-all"
+    const visibleClassNames = "opacity-100 translate-x-0"
+    const invisibleClassNames = "opacity-0 -translate-x-2"
+
     const languagesDisplay = static_data.languages.map((item, index) => {
         return (
-            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isLanguagesVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+            <div key={item.description} className={visibleInvisibleClassNames.concat(" ", isLanguagesVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay + (inBetweenDelay * index)}ms`}}>
                 {displayFormatter(item)}
             </div>
         )
@@ -283,7 +345,7 @@ const SkillsSection = ({ inBetweenDelay }: { inBetweenDelay: number }) => {
 
     const technologiesDisplay = static_data.technologies.map((item, index) => {
         return (
-            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isTechnologiesVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+            <div key={item.description} className={visibleInvisibleClassNames.concat(" ", isTechnologiesVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay + (inBetweenDelay * index)}ms`}}>
                 {displayFormatter(item)}
             </div>
         )
@@ -291,7 +353,7 @@ const SkillsSection = ({ inBetweenDelay }: { inBetweenDelay: number }) => {
 
     const toolsDisplay = static_data.tools.map((item, index) => {
         return (
-            <div key={item.description} className={"inline-block transition-opacity".concat(" ", isToolsVisible ? "opacity-100" : "opacity-0")} style={{transitionDelay: `${(inBetweenDelay * index)}ms`}}>
+            <div key={item.description} className={visibleInvisibleClassNames.concat(" ", isToolsVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay + (inBetweenDelay * index)}ms`}}>
                 {displayFormatter(item)}
             </div>
         )
@@ -299,30 +361,38 @@ const SkillsSection = ({ inBetweenDelay }: { inBetweenDelay: number }) => {
 
     return (
         <>
-            <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
-                {"Technical Skills"}
+            <h1 ref={sectionTitle} className={visibleInvisibleClassNames.concat(" mt-10 ", isSectionTitleVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay}ms`}}>
+                <span className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
+                    {"Technical Skills"}
+                </span>
             </h1>
-            <div ref={languagesContainer}>
-                <h1 className="text-4xl md:text-5xl mt-10 leading-normal font-medium text-white align-middle">
-                    {"Languages"}
+            <div>
+                <h1 ref={languagesTitle} className={visibleInvisibleClassNames.concat(" mt-10 ", isLanguagesTitleVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay}ms`}}>
+                    <span className="text-4xl md:text-5xl leading-normal font-medium text-white align-middle">
+                        {"Languages"}
+                    </span>
                 </h1>
-                <div className="mt-8">
+                <div ref={languagesContainer} className="mt-8">
                     {languagesDisplay}
                 </div>
             </div>
-            <div ref={technologiesContainer}>
-                <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
-                    {"Technologies"}
+            <div>
+                <h1 ref={technologiesTitle} className={visibleInvisibleClassNames.concat(" mt-9 ", isTechnologiesTitleVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay}ms`}}>
+                    <span className="text-4xl md:text-5xl leading-normal font-medium text-white align-middle">
+                        {"Technologies"}
+                    </span>
                 </h1>
-                <div className="mt-8">
+                <div ref={technologiesContainer} className="mt-8">
                     {technologiesDisplay}
                 </div>
             </div>
-            <div ref={toolsContainer}>
-                <h1 className="text-4xl md:text-5xl mt-9 leading-normal font-medium text-white align-middle">
-                    {"Tools"}
+            <div>
+                <h1 ref={toolsTitle} className={visibleInvisibleClassNames.concat(" mt-9 ", isToolsTitleVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay}ms`}}>
+                    <span className="text-4xl md:text-5xl leading-normal font-medium text-white align-middle">
+                        {"Tools"}
+                    </span>
                 </h1>
-                <div className="mt-8">
+                <div ref={toolsContainer} className="mt-8">
                     {toolsDisplay}
                 </div>
             </div>

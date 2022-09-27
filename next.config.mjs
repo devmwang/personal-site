@@ -21,7 +21,7 @@ export default defineNextConfig({
             headers: [
                 {
                     key: "Content-Security-Policy",
-                    value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' www.googletagmanager.com",
+                    value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' www.googletagmanager.com vitals.vercel-insights.com",
                 },
                 {
                     key: "X-Frame-Options",

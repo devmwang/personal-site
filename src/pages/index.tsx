@@ -71,9 +71,9 @@ const Home: NextPage = () => (
                 <AnimatedSubtext staticText={"I'm a"} animatedText={["student pursuing Computer Science.", "software developer."]} />
             </section>
 
-            <section id="about" className="min-h-screen h-max pb-40 bg-dark justify-center flex-col text-center">
-                {/* About */}
-                <div className="container mx-auto pt-28 px-10">
+            {/* About */}
+            <section id="about" className="pt-40 bg-dark justify-center flex-col text-center">
+                <div className="container mx-auto px-20">
                     <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
                         {"About"}
                     </h1>
@@ -84,19 +84,21 @@ const Home: NextPage = () => (
                         {"I enjoy learning new technologies and growing my knowledge on modern frameworks. My experience creating programs spans a wide variety of platforms, ranging from interactive web and mobile apps, to native desktop software, and cutting-edge virtual reality experiences."}
                     </p>
                 </div>
+            </section>
 
-                {/* Skills/Knowledge */}
-                <div className="container mx-auto pt-40 px-10">
+            {/* Technical Skills */}
+            <section id="skills" className="pt-40 bg-dark justify-center flex-col text-center">
+                <div className="container mx-auto px-20">
                     <SkillsSection baseDelay={200} inBetweenDelay={50} />
-                </div>
-
-                {/* Projects */}
-                <div className="container mx-auto pt-40 px-28">
-                    <ProjectsSection />
                 </div>
             </section>
 
-            {/* Bottom Links (Mobile) */}
+            {/* Projects */}
+            <section id="projects" className="pt-40 bg-dark justify-center flex-col text-center">
+                <div className="container mx-auto px-20">
+                    <ProjectsSection />
+                </div>
+            </section>
         </main>
     </>
 );
@@ -361,7 +363,7 @@ const SkillsSection = ({ baseDelay, inBetweenDelay }: { baseDelay: number, inBet
 
     return (
         <>
-            <h1 ref={sectionTitle} className={visibleInvisibleClassNames.concat(" mt-10 ", isSectionTitleVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay}ms`}}>
+            <h1 ref={sectionTitle} className={visibleInvisibleClassNames.concat(isSectionTitleVisible ? visibleClassNames : invisibleClassNames)} style={{transitionDelay: `${baseDelay}ms`}}>
                 <span className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
                     {"Technical Skills"}
                 </span>

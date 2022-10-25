@@ -10,11 +10,11 @@ Icons from [Feather Icons](https://feathericons.com/) (react-feather) and [Devic
 
 ## Languages
 
- TypeScript
- 
- HTML
- 
- CSS
+TypeScript
+
+HTML
+
+CSS
 
 ## Available Terminal Commands
 

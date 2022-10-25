@@ -1,4 +1,5 @@
-export const GOOGLE_ANALYTICS_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string
+export const GOOGLE_ANALYTICS_ID = process.env
+    .NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string;
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL, title: string): void => {

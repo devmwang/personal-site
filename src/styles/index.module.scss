@@ -1,17 +1,17 @@
 .animatedGradientText {
-    background-image: linear-gradient(to right, #34a054, #00C3D8, #34a054);
-    -webkit-background-clip: text; 
-    background-clip: text; 
+    background-image: linear-gradient(to right, #34a054, #00c3d8, #34a054);
+    -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
-    
+
     background-size: 300%;
-    background-position: -100%;  
-    
+    background-position: -100%;
+
     animation: animatedGradientText 4s infinite alternate-reverse;
-  }
-  
-  @keyframes animatedGradientText{
-    to{
-      background-position: 100%; 
+}
+
+@keyframes animatedGradientText {
+    to {
+        background-position: 100%;
     }
-  }
+}

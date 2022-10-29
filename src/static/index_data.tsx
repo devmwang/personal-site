@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 
 import {
     PythonOriginalIcon,
@@ -16,16 +16,12 @@ import {
     NodejsOriginalIcon,
     AngularjsOriginalIcon,
     GithubOriginalIcon,
-    VscodeOriginalIcon,
-    JetbrainsOriginalIcon,
 } from "react-devicons";
 
 import FastifyIcon from "@src/public/SkillsIcons/Fastify.svg";
 import PrismaIcon from "@src/public/SkillsIcons/Prisma.svg";
 import tRPCIcon from "@src/public/SkillsIcons/tRPC.svg";
-import ViteIcon from "@src/public/SkillsIcons/Vite.svg";
 
-import VisualStudioIcon from "@src/public/SkillsIcons/VisualStudio.svg";
 import TurborepoIcon from "@src/public/SkillsIcons/Turborepo.svg";
 
 // Skills Section
@@ -80,28 +76,12 @@ export const technologies = [
         description: "Angular",
         iconComponent: <AngularjsOriginalIcon size="6rem" />,
     },
-    {
-        description: "Vite.js",
-        iconComponent: <Image src={ViteIcon} width="96" alt="" />,
-    },
 ];
 
 export const tools = [
     {
         description: "Git/GitHub",
         iconComponent: <GithubOriginalIcon size="6rem" color="white" />,
-    },
-    {
-        description: "VS Code",
-        iconComponent: <VscodeOriginalIcon size="6rem" />,
-    },
-    {
-        description: "Visual Studio",
-        iconComponent: <Image src={VisualStudioIcon} width="96" alt="" />,
-    },
-    {
-        description: "JetBrains Tools",
-        iconComponent: <JetbrainsOriginalIcon size="6rem" />,
     },
     {
         description: "Turborepo",

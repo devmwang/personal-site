@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/future/image";
 import { GitHub, Linkedin, Twitter, Mail } from "react-feather";
 
 import styles from "@src/styles/index.module.scss";

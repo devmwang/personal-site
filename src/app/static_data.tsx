@@ -68,7 +68,7 @@ export const languages = [
     { description: "Swift", iconComponent: <SwiftOriginalIcon size="6rem" /> },
     { description: "HTML", iconComponent: <Html5OriginalIcon size="6rem" /> },
     { description: "CSS", iconComponent: <Css3OriginalIcon size="6rem" /> },
-    { description: "SCSS", iconComponent: <SassOriginalIcon size="6rem" /> },
+    { description: "Sass", iconComponent: <SassOriginalIcon size="6rem" /> },
 ];
 
 export const technologies = [

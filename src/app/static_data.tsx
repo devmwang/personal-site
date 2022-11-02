@@ -11,7 +11,6 @@ import {
     Html5OriginalIcon,
     Css3OriginalIcon,
     SassOriginalIcon,
-    NextjsOriginalWordmarkIcon,
     ReactOriginalIcon,
     TailwindcssPlainIcon,
     NodejsOriginalIcon,
@@ -19,6 +18,7 @@ import {
     GithubOriginalIcon,
 } from "react-devicons";
 
+import NextjsIcon from "@src/public/SkillsIcons/Nextjs.svg";
 import FastifyIcon from "@src/public/SkillsIcons/Fastify.svg";
 import PrismaIcon from "@src/public/SkillsIcons/Prisma.svg";
 import tRPCIcon from "@src/public/SkillsIcons/tRPC.svg";
@@ -72,9 +72,13 @@ export const languages = [
 ];
 
 export const technologies = [
+    // {
+    //     description: "Next.js",
+    //     iconComponent: <NextjsOriginalWordmarkIcon size="6rem" color="white" />,
+    // },
     {
         description: "Next.js",
-        iconComponent: <NextjsOriginalWordmarkIcon size="6rem" color="white" />,
+        iconComponent: <Image src={NextjsIcon} height="32" alt="" />,
     },
     { description: "React", iconComponent: <ReactOriginalIcon size="6rem" /> },
     {

@@ -363,7 +363,7 @@ const SkillsSection = ({
         const { description, iconComponent } = item;
 
         return (
-            <div className="group px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform">
+            <div className="group px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform align-middle">
                 {iconComponent}
                 <div className="relative flex justify-center">
                     <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
@@ -374,7 +374,7 @@ const SkillsSection = ({
         );
     };
 
-    const visibleInvisibleClassNames = "inline-block transition-all";
+    const visibleInvisibleClassNames = "inline-block transition-all align-middle";
     const visibleClassNames = "opacity-100 translate-x-0";
     const invisibleClassNames = "opacity-0 -translate-x-2";
 

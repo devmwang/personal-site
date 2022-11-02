@@ -30,79 +30,81 @@ interface AnimatedSubtextProps {
     animatedText: string[];
 }
 
-const Home: NextPage = () => (
-    <>
-        <main className="min-h-screen flex flex-col font-sans">
-            {/* Side Links */}
-            <SideLinks
-                linkList={static_data.links}
-                revealDelay={200}
-                inBetweenDelay={200}
-            />
-
-            {/* Main Content */}
-            <section className="h-screen bg-background justify-center items-center flex flex-col text-center">
-                <h1 className="text-5xl sm:text-7xl md:text-8xl leading-normal font-semibold text-white align-middle">
-                    {"Hi, I'm "}
-                    {/* <span className="text-accent">{"Michael"}</span> */}
-                    <span className={styles.animatedGradientText}>
-                        {"Michael"}
-                    </span>
-                    {"."}
-                </h1>
-                <AnimatedSubtext
-                    staticText={"I'm a"}
-                    animatedText={[
-                        "student pursuing Computer Science.",
-                        "software developer.",
-                    ]}
+export default function Home() {
+    return (
+        <>
+            <main className="min-h-screen flex flex-col font-sans">
+                {/* Side Links */}
+                <SideLinks
+                    linkList={static_data.links}
+                    revealDelay={200}
+                    inBetweenDelay={200}
                 />
-            </section>
 
-            {/* About */}
-            <section
-                id="about"
-                className="pt-40 bg-dark justify-center flex-col text-center"
-            >
-                <div className="container mx-auto px-20">
-                    <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
-                        {"About"}
+                {/* Main Content */}
+                <section className="h-screen bg-background justify-center items-center flex flex-col text-center">
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl leading-normal font-semibold text-white align-middle">
+                        {"Hi, I'm "}
+                        {/* <span className="text-accent">{"Michael"}</span> */}
+                        <span className={styles.animatedGradientText}>
+                            {"Michael"}
+                        </span>
+                        {"."}
                     </h1>
-                    <p className="text-lg md:text-2xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
-                        {
-                            "I'm currently a student at the University of British Columbia and Sauder School of Business, pursuing a Bachelor of Computer Science and a Master of Management."
-                        }
-                    </p>
-                    <p className="text-lg md:text-2xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
-                        {
-                            "I enjoy learning new technologies and growing my knowledge on modern frameworks. My experience creating programs spans a wide variety of platforms, ranging from interactive web and mobile apps, to native desktop software, and cutting-edge virtual reality experiences."
-                        }
-                    </p>
-                </div>
-            </section>
+                    <AnimatedSubtext
+                        staticText={"I'm a"}
+                        animatedText={[
+                            "student pursuing Computer Science.",
+                            "software developer.",
+                        ]}
+                    />
+                </section>
 
-            {/* Technical Skills */}
-            <section
-                id="skills"
-                className="pt-40 bg-dark justify-center flex-col text-center"
-            >
-                <div className="container mx-auto px-20">
-                    <SkillsSection baseDelay={200} inBetweenDelay={50} />
-                </div>
-            </section>
+                {/* About */}
+                <section
+                    id="about"
+                    className="pt-40 bg-dark justify-center flex-col text-center"
+                >
+                    <div className="container mx-auto px-20">
+                        <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
+                            {"About"}
+                        </h1>
+                        <p className="text-lg md:text-2xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
+                            {
+                                "I'm currently a student at the University of British Columbia and Sauder School of Business, pursuing a Bachelor of Computer Science and a Master of Management."
+                            }
+                        </p>
+                        <p className="text-lg md:text-2xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
+                            {
+                                "I enjoy learning new technologies and growing my knowledge on modern frameworks. My experience creating programs spans a wide variety of platforms, ranging from interactive web and mobile apps, to native desktop software, and cutting-edge virtual reality experiences."
+                            }
+                        </p>
+                    </div>
+                </section>
 
-            {/* Projects */}
-            <section
-                id="projects"
-                className="pt-40 bg-dark justify-center flex-col text-center"
-            >
-                <div className="container mx-auto px-20">
-                    <ProjectsSection />
-                </div>
-            </section>
-        </main>
-    </>
-);
+                {/* Technical Skills */}
+                <section
+                    id="skills"
+                    className="pt-40 bg-dark justify-center flex-col text-center"
+                >
+                    <div className="container mx-auto px-20">
+                        <SkillsSection baseDelay={200} inBetweenDelay={50} />
+                    </div>
+                </section>
+
+                {/* Projects */}
+                <section
+                    id="projects"
+                    className="pt-40 bg-dark justify-center flex-col text-center"
+                >
+                    <div className="container mx-auto px-20">
+                        <ProjectsSection />
+                    </div>
+                </section>
+            </main>
+        </>
+    );
+}
 
 const SideLinks = ({
     linkList,
@@ -655,5 +657,3 @@ const ProjectsSection = () => {
         </>
     );
 };
-
-export default Home;

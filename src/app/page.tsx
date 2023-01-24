@@ -1,11 +1,12 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/future/image";
-import { GitHub, Linkedin, Twitter, Mail } from "react-feather";
+import { GitHub } from "react-feather";
 
 import styles from "@src/styles/index.module.scss";
-import * as static_data from "../static/index_data";
+import * as static_data from "@app/static_data";
 
 type LinkDetails = {
     description: string;
@@ -29,120 +30,81 @@ interface AnimatedSubtextProps {
     animatedText: string[];
 }
 
-const links = [
-    {
-        description: "GitHub",
-        link: "https://github.com/devmwang/",
-        iconComponent: <GitHub />,
-    },
-    {
-        description: "LinkedIn",
-        link: "https://linkedin.com/in/devmwang/",
-        iconComponent: <Linkedin />,
-    },
-    {
-        description: "Twitter",
-        link: "https://twitter.com/devmwang",
-        iconComponent: <Twitter />,
-    },
-    {
-        description: "Email",
-        link: "mailto:devmwang@icloud.com",
-        iconComponent: <Mail />,
-    },
-];
-
-const Home: NextPage = () => (
-    <>
-        <Head>
-            <title>Michael Wang | Personal Site</title>
-            <link rel="icon" href="/favicon.svg" />
-
-            {/* Meta Tags */}
-            <meta
-                name="description"
-                content="Michael Wang's Personal Site, built on Next.js."
-            />
-            <meta name="theme-color" content="#00C8C7"></meta>
-
-            <meta name="og:title" content="Michael Wang | Personal Site" />
-            <meta
-                name="og:description"
-                content="Michael Wang's Personal Site, built on Next.js."
-            />
-            <meta
-                property="og:image"
-                content="https://www.devmwang.com/SiteLogo.png"
-            />
-            <meta property="og:url" content="https://www.devmwang.com/" />
-
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:site" content="@devmwang" />
-        </Head>
-
-        <main className="min-h-screen flex flex-col font-sans">
-            {/* Side Links */}
-            <SideLinks
-                linkList={links}
-                revealDelay={200}
-                inBetweenDelay={200}
-            />
-
-            {/* Main Content */}
-            <section className="h-screen bg-background justify-center items-center flex flex-col text-center">
-                <h1 className="text-5xl sm:text-7xl md:text-8xl leading-normal font-semibold text-white align-middle">
-                    {"Hi, I'm "}
-                    {/* <span className="text-accent">{"Michael"}</span> */}
-                    <span className={styles.animatedGradientText}>
-                        {"Michael"}
-                    </span>
-                    {"."}
-                </h1>
-                <AnimatedSubtext
-                    staticText={"I'm a"}
-                    animatedText={[
-                        "student pursuing Computer Science.",
-                        "software developer.",
-                    ]}
+export default function Home() {
+    return (
+        <>
+            <main className="min-h-screen flex flex-col font-sans">
+                {/* Side Links */}
+                <SideLinks
+                    linkList={static_data.links}
+                    revealDelay={200}
+                    inBetweenDelay={200}
                 />
-            </section>
 
-            <section
-                id="about"
-                className="min-h-screen h-max pb-40 bg-dark justify-center flex-col text-center"
-            >
-                {/* About */}
-                <div className="container mx-auto pt-28 px-10">
-                    <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
-                        {"About"}
+                {/* Main Content */}
+                <section className="h-screen bg-background justify-center items-center flex flex-col text-center">
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl leading-normal font-semibold text-white align-middle">
+                        {"Hi, I'm "}
+                        {/* <span className="text-accent">{"Michael"}</span> */}
+                        <span className={styles.animatedGradientText}>
+                            {"Michael"}
+                        </span>
+                        {"."}
                     </h1>
-                    <p className="text-lg md:text-2xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
-                        {
-                            "I'm currently a student at the University of British Columbia and Sauder School of Business, pursuing a Bachelor of Computer Science and a Master of Management."
-                        }
-                    </p>
-                    <p className="text-lg md:text-2xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
-                        {
-                            "I enjoy learning new technologies and growing my knowledge on modern frameworks. My experience creating programs spans a wide variety of platforms, ranging from interactive web and mobile apps, to native desktop software, and cutting-edge virtual reality experiences."
-                        }
-                    </p>
-                </div>
+                    <AnimatedSubtext
+                        staticText={"I'm a"}
+                        animatedText={[
+                            "student pursuing Computer Science.",
+                            "software developer.",
+                        ]}
+                    />
+                </section>
 
-                {/* Skills/Knowledge */}
-                <div className="container mx-auto pt-40 px-10">
-                    <SkillsSection baseDelay={200} inBetweenDelay={50} />
-                </div>
+                {/* About */}
+                <section
+                    id="about"
+                    className="pt-40 bg-dark justify-center flex-col text-center"
+                >
+                    <div className="container mx-auto px-20">
+                        <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
+                            {"About"}
+                        </h1>
+                        <p className="text-lg md:text-2xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
+                            {
+                                "I'm currently a student at the University of British Columbia and Sauder School of Business, pursuing a Bachelor of Computer Science and a Master of Management."
+                            }
+                        </p>
+                        <p className="text-lg md:text-2xl pt-1 md:pt-8 leading-normal font-normal text-white align-middle">
+                            {
+                                "I enjoy learning new technologies and growing my knowledge on modern frameworks. My experience creating programs spans a wide variety of platforms, ranging from interactive web and mobile apps, to native desktop software, and cutting-edge virtual reality experiences."
+                            }
+                        </p>
+                    </div>
+                </section>
+
+                {/* Technical Skills */}
+                <section
+                    id="skills"
+                    className="pt-40 bg-dark justify-center flex-col text-center"
+                >
+                    <div className="container mx-auto px-20">
+                        <SkillsSection baseDelay={200} inBetweenDelay={50} />
+                    </div>
+                </section>
 
                 {/* Projects */}
-                <div className="container mx-auto pt-40 px-28">
-                    <ProjectsSection />
-                </div>
-            </section>
-
-            {/* Bottom Links (Mobile) */}
-        </main>
-    </>
-);
+                <section
+                    id="projects"
+                    className="pt-40 bg-dark justify-center flex-col text-center"
+                >
+                    <div className="container mx-auto px-20">
+                        <ProjectsSection />
+                    </div>
+                </section>
+            </main>
+        </>
+    );
+}
 
 const SideLinks = ({
     linkList,
@@ -401,7 +363,7 @@ const SkillsSection = ({
         const { description, iconComponent } = item;
 
         return (
-            <div className="group px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform">
+            <div className="group px-4 py-2 hover:scale-110 hover:-translate-y-2 transition-transform align-middle">
                 {iconComponent}
                 <div className="relative flex justify-center">
                     <span className="absolute opacity-0 group-hover:opacity-100 -bottom-3 translate-y-full px-3 py-1.5 bg-gray rounded-xl text-center text-white text-md transition-opacity duration-200">
@@ -412,7 +374,8 @@ const SkillsSection = ({
         );
     };
 
-    const visibleInvisibleClassNames = "inline-block transition-all";
+    const visibleInvisibleClassNames =
+        "inline-block transition-all align-middle";
     const visibleClassNames = "opacity-100 translate-x-0";
     const invisibleClassNames = "opacity-0 -translate-x-2";
 
@@ -476,7 +439,6 @@ const SkillsSection = ({
             <h1
                 ref={sectionTitle}
                 className={visibleInvisibleClassNames.concat(
-                    " mt-10 ",
                     isSectionTitleVisible
                         ? visibleClassNames
                         : invisibleClassNames,
@@ -584,6 +546,24 @@ const ProjectsSection = () => {
             skills: ["Python", "discord.py", "requests", "WebSockets"],
         },
         {
+            name: "Snow Folio - Property Management System",
+            status: "In Development",
+            color: "orange",
+            description:
+                "Snow Folio is a new property management system, created to solve the unique needs of property managers and owners.",
+            skills: [
+                "TypeScript",
+                "Next.js",
+                "React",
+                "Tailwind CSS",
+                "tRPC",
+                "TanStack Query",
+                "Prisma",
+                "Turborepo",
+                "Node.js",
+            ],
+        },
+        {
             name: "Snow Cloud - Cloud Storage",
             status: "Early Planning/Development",
             color: "orange",
@@ -659,15 +639,17 @@ const ProjectsSection = () => {
                     <div className="block grow">
                         <div className="flex justify-between items-center">
                             <div className="text-lg font-medium">{name}</div>
-                            <a
-                                href={gh_link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={name}
-                                className="inline-block"
-                            >
-                                <GitHub />
-                            </a>
+                            {!!gh_link && (
+                                <a
+                                    href={gh_link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={name}
+                                    className="inline-block"
+                                >
+                                    <GitHub />
+                                </a>
+                            )}
                         </div>
                         <div>
                             Status:{" "}
@@ -686,15 +668,13 @@ const ProjectsSection = () => {
     });
 
     return (
-        <>
+        <div className="pb-16">
             <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
                 {"My Projects"}
             </h1>
             <ul className="grid relative gap-5 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 list-none mt-10">
                 {projectsDisplay}
             </ul>
-        </>
+        </div>
     );
 };
-
-export default Home;

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { GitHub, Linkedin, Twitter, Mail } from "react-feather";
 
 import {
     PythonOriginalIcon,
@@ -10,7 +11,6 @@ import {
     Html5OriginalIcon,
     Css3OriginalIcon,
     SassOriginalIcon,
-    NextjsOriginalWordmarkIcon,
     ReactOriginalIcon,
     TailwindcssPlainIcon,
     NodejsOriginalIcon,
@@ -18,11 +18,36 @@ import {
     GithubOriginalIcon,
 } from "react-devicons";
 
+import NextjsIcon from "@src/public/SkillsIcons/Nextjs.svg";
 import FastifyIcon from "@src/public/SkillsIcons/Fastify.svg";
 import PrismaIcon from "@src/public/SkillsIcons/Prisma.svg";
 import tRPCIcon from "@src/public/SkillsIcons/tRPC.svg";
 
 import TurborepoIcon from "@src/public/SkillsIcons/Turborepo.svg";
+
+// Links
+export const links = [
+    {
+        description: "GitHub",
+        link: "https://github.com/devmwang/",
+        iconComponent: <GitHub />,
+    },
+    {
+        description: "LinkedIn",
+        link: "https://linkedin.com/in/devmwang/",
+        iconComponent: <Linkedin />,
+    },
+    {
+        description: "Twitter",
+        link: "https://twitter.com/devmwang",
+        iconComponent: <Twitter />,
+    },
+    {
+        description: "Email",
+        link: "mailto:devmwang@icloud.com",
+        iconComponent: <Mail />,
+    },
+];
 
 // Skills Section
 export const languages = [
@@ -43,13 +68,17 @@ export const languages = [
     { description: "Swift", iconComponent: <SwiftOriginalIcon size="6rem" /> },
     { description: "HTML", iconComponent: <Html5OriginalIcon size="6rem" /> },
     { description: "CSS", iconComponent: <Css3OriginalIcon size="6rem" /> },
-    { description: "SCSS", iconComponent: <SassOriginalIcon size="6rem" /> },
+    { description: "Sass", iconComponent: <SassOriginalIcon size="6rem" /> },
 ];
 
 export const technologies = [
+    // {
+    //     description: "Next.js",
+    //     iconComponent: <NextjsOriginalWordmarkIcon size="6rem" color="white" />,
+    // },
     {
         description: "Next.js",
-        iconComponent: <NextjsOriginalWordmarkIcon size="6rem" color="white" />,
+        iconComponent: <Image src={NextjsIcon} height="32" alt="" />,
     },
     { description: "React", iconComponent: <ReactOriginalIcon size="6rem" /> },
     {

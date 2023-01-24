@@ -374,7 +374,8 @@ const SkillsSection = ({
         );
     };
 
-    const visibleInvisibleClassNames = "inline-block transition-all align-middle";
+    const visibleInvisibleClassNames =
+        "inline-block transition-all align-middle";
     const visibleClassNames = "opacity-100 translate-x-0";
     const invisibleClassNames = "opacity-0 -translate-x-2";
 
@@ -545,6 +546,24 @@ const ProjectsSection = () => {
             skills: ["Python", "discord.py", "requests", "WebSockets"],
         },
         {
+            name: "Snow Folio - Property Management System",
+            status: "In Development",
+            color: "orange",
+            description:
+                "Snow Folio is a new property management system, created to solve the unique needs of property managers and owners.",
+            skills: [
+                "TypeScript",
+                "Next.js",
+                "React",
+                "Tailwind CSS",
+                "tRPC",
+                "TanStack Query",
+                "Prisma",
+                "Turborepo",
+                "Node.js",
+            ],
+        },
+        {
             name: "Snow Cloud - Cloud Storage",
             status: "Early Planning/Development",
             color: "orange",
@@ -620,15 +639,17 @@ const ProjectsSection = () => {
                     <div className="block grow">
                         <div className="flex justify-between items-center">
                             <div className="text-lg font-medium">{name}</div>
-                            <a
-                                href={gh_link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={name}
-                                className="inline-block"
-                            >
-                                <GitHub />
-                            </a>
+                            {!!gh_link && (
+                                <a
+                                    href={gh_link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={name}
+                                    className="inline-block"
+                                >
+                                    <GitHub />
+                                </a>
+                            )}
                         </div>
                         <div>
                             Status:{" "}
@@ -647,13 +668,13 @@ const ProjectsSection = () => {
     });
 
     return (
-        <>
+        <div className="pb-16">
             <h1 className="text-5xl md:text-6xl leading-normal font-semibold text-white align-middle underline decoration-accent underline-offset-4 decoration-[5px]">
                 {"My Projects"}
             </h1>
             <ul className="grid relative gap-5 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 list-none mt-10">
                 {projectsDisplay}
             </ul>
-        </>
+        </div>
     );
 };

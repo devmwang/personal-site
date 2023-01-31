@@ -44,7 +44,7 @@ export const links = [
     },
     {
         description: "Email",
-        link: "mailto:devmwang@icloud.com",
+        link: "mailto:michael@devmwang.com",
         iconComponent: <Mail />,
     },
 ];

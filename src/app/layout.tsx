@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <head>
+            {/* <head>
                 <link rel="icon" href="/favicon.svg" />
 
                 <meta name="theme-color" content="#00C8C7"></meta>
@@ -20,7 +20,7 @@ export default function RootLayout({
 
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:site" content="@devmwang" />
-            </head>
+            </head> */}
 
             <body>{children}</body>
         </html>

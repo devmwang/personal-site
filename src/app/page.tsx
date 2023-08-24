@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import type { NextPage } from "next";
-import Head from "next/head";
 import { GitHub } from "react-feather";
 
 import styles from "@src/styles/index.module.scss";
@@ -513,9 +511,27 @@ const SkillsSection = ({
 const ProjectsSection = () => {
     const projects = [
         {
+            name: "OpenCloud File Cloud Server",
+            description:
+                "OpenCloud is a free, open-source, and self-hosted cloud file server and management system.",
+            gh_link: "https://github.com/Controllyx/OpenCloud",
+            skills: [
+                "Node.js",
+                "TypeScript",
+                "Fastify",
+                "Prisma",
+                "PostgreSQL",
+                "Zod",
+                "argon2",
+                "Next.js",
+                "React",
+                "React Server Components",
+                "Tailwind CSS",
+                "Framer Motion",
+            ],
+        },
+        {
             name: "Personal Site and Portfolio",
-            status: "Stable",
-            color: "LawnGreen",
             description:
                 "My personal site and portfolio, built on Next.js and Tailwind CSS!",
             gh_link: "https://github.com/devmwang/personal-site",
@@ -524,103 +540,51 @@ const ProjectsSection = () => {
                 "Next.js",
                 "React",
                 "Tailwind CSS",
-                "Node.js",
+                "Intersection Observer API",
             ],
         },
         {
             name: "Personal Discord Bot",
-            status: "Stable",
-            color: "LawnGreen",
             description:
-                "Discord Bots designed for use in private servers. Feature set based on user demands and changes often.",
+                "Discord Bot designed for use in private servers. Feature set based on user demands and changes often.",
             gh_link: "https://github.com/devmwang/DiscordBotPy",
             skills: ["Python", "discord.py", "requests"],
         },
         {
             name: "Cryptocurrency Price Discord Bots",
-            status: "Stable",
-            color: "LawnGreen",
             description:
                 "Cluster of Discord Bots designed to display current crypto prices with alert system.",
             gh_link: "https://github.com/devmwang/CryptoPriceBots",
             skills: ["Python", "discord.py", "requests", "WebSockets"],
         },
         {
-            name: "Snow Folio - Property Management System",
-            status: "In Development",
-            color: "orange",
+            name: "Carbon Inspector",
             description:
-                "Snow Folio is a new property management system, created to solve the unique needs of property managers and owners.",
+                "HackCamp 2022 Project. A web app that allows users to calculate their carbon footprint.",
+            gh_link: "https://github.com/devmwang-HackCamp2022/hackcamp2022",
             skills: [
                 "TypeScript",
                 "Next.js",
                 "React",
+                "Vercel Serverless Functions",
                 "Tailwind CSS",
-                "tRPC",
-                "TanStack Query",
-                "Prisma",
-                "Turborepo",
-                "Node.js",
             ],
         },
         {
-            name: "Snow Cloud - Cloud Storage",
-            status: "Early Planning/Development",
-            color: "orange",
+            name: "Track:GO",
             description:
-                "Snow Cloud is a full stack web app designed to function similarly to Google Drive, OneDrive, or iCloud.",
-            gh_link: "https://github.com/SnowTechnologies/snow-cloud",
+                "Basic Java desktop application built using Java Swing with app state save/load capabilities.",
+            gh_link: "https://github.com/devmwang/TrackGO",
             skills: [
-                "TypeScript",
-                "Next.js",
-                "React",
-                "Tailwind CSS",
-                "tRPC",
-                "TanStack Query",
-                "Fastify",
-                "Prisma",
-                "Node.js",
+                "Java",
+                "Java Swing",
+                "JUnit",
             ],
-        },
-        {
-            name: "Asset Price Display",
-            status: "Early Development",
-            color: "orange",
-            description:
-                "iOS app designed to display asset prices (stock market and cryptocurrency). Planned features include widgets and Live Activities through the WidgetKit API.",
-            gh_link: "https://github.com/devmwang/AssetPriceDisplay",
-            skills: ["Swift", "SwiftUI"],
-        },
-        {
-            name: "Engage Network Web App",
-            status: "End-of-Life",
-            color: "red",
-            description:
-                "Engage Network was a digital learning platform that helped connect tutors with students. The project was shelved in mid-2022.",
-            gh_link: "https://github.com/EngageNetwork",
-            skills: [
-                "TypeScript",
-                "JavaScript",
-                "Angular",
-                "Bootstrap 5",
-                "Express.js",
-                "MongoDB",
-                "Node.js",
-            ],
-        },
-        {
-            name: "File Share",
-            status: "End-of-Life",
-            color: "red",
-            description:
-                "File Share is a simple P2P application for sharing files over open and forwarded network ports. The project was shelved in late-2021.",
-            gh_link: "https://github.com/devmwang/FileShare",
-            skills: ["C#", ".NET Framework", "WPF"],
         },
     ];
 
     const projectsDisplay = projects.map((project) => {
-        const { name, status, color, description, gh_link, skills } = project;
+        const { name, description, gh_link, skills } = project;
 
         const skillsList = skills.map((skill) => {
             return (
@@ -650,10 +614,6 @@ const ProjectsSection = () => {
                                     <GitHub />
                                 </a>
                             )}
-                        </div>
-                        <div>
-                            Status:{" "}
-                            <span style={{ color: color }}>{status}</span>
                         </div>
                         <div className="my-2">
                             <p className="text-md">{description}</p>

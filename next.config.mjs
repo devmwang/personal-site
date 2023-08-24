@@ -1,23 +1,7 @@
-import { env } from "./src/env/server.mjs";
+// @ts-check
 
-/**
- * Don't be scared of the generics here.
- * All they do is to give us autocompletion when using this.
- *
- * @template {import('next').NextConfig} T
- * @param {T} config - A generic parameter that flows through to the return type
- * @constraint {{import('next').NextConfig}}
- */
-function defineNextConfig(config) {
-    return config;
-}
-
-export default defineNextConfig({
-    experimental: {
-        appDir: true,
-    },
-    reactStrictMode: true,
-    swcMinify: true,
+/** @type {import("next").NextConfig} */
+const config = {
     headers: async () => {
         return [
             {
@@ -25,7 +9,7 @@ export default defineNextConfig({
                 headers: [
                     {
                         key: "Content-Security-Policy",
-                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' www.googletagmanager.com www.google-analytics.com vitals.vercel-insights.com",
+                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' vitals.vercel-insights.com",
                     },
                     {
                         key: "X-Frame-Options",
@@ -47,4 +31,6 @@ export default defineNextConfig({
             },
         ];
     },
-});
+};
+
+export default config;

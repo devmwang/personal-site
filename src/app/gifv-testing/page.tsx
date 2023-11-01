@@ -4,7 +4,7 @@ export const metadata = {
     metadataBase: new URL("https://devmwang.com"),
     openGraph: {
         videos: [
-            "https://opencloud-api.devmwang.com/v1/files/get/clmuw5rg401bf83a8u6wi30jb.mp4",
+            "https://opencloud-api.devmwang.com/v1/files/get/clog52boi02af83a8azobspza.mp4",
         ],
     },
     alternates: {

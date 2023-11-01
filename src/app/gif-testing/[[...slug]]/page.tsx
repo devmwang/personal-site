@@ -16,6 +16,11 @@ export const metadata = {
             },
         ],
     },
+    alternates: {
+        types: {
+            "application/json+oembed": "/api/oembed-gif",
+        },
+    },
     robots: {
         index: false,
     },

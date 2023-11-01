@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
         type: "photo",
         width: 1920,
         height: 1080,
-        url: "https://opencloud-api.devmwang.com/v1/files/get/clog52boi02af83a8azobspza.mp4",
+        url: "https://opencloud-api.devmwang.com/v1/files/get/cllsqv8tc00ej83lx83yvs6fe.gif",
         provider_name: "OpenCloud",
         provider_url: "https://opencloud.devmwang.com/",
     });

@@ -31,6 +31,12 @@ const config = {
             },
         ];
     },
+    images: {
+        domains: [
+            new URL("https://opencloud.devmwang.com").hostname,
+            new URL("https://opencloud-api.devmwang.com").hostname,
+        ],
+    },
 };
 
 export default config;

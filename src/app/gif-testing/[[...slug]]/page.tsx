@@ -4,7 +4,7 @@ export const metadata = {
     metadataBase: new URL("https://devmwang.com"),
     openGraph: {
         title: "GIF Testing",
-        type: "website",
+        type: "image" as any,
         url: "https://opencloud-api.devmwang.com/v1/files/get/clog6s2zz02az83a8z0xsn38u.gif",
         images: [
             {

@@ -27,11 +27,11 @@ export const metadata = {
             },
         ],
     },
-    // alternates: {
-    //     types: {
-    //         "application/json+oembed": "/api/oembed",
-    //     },
-    // },
+    alternates: {
+        types: {
+            "application/json+oembed": "/api/oembed",
+        },
+    },
     robots: {
         index: false,
     },

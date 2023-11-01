@@ -21,9 +21,6 @@ export const metadata = {
             "application/json+oembed": "/api/oembed-gif",
         },
     },
-    robots: {
-        index: false,
-    },
 };
 
 export default function Page() {

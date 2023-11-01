@@ -32,9 +32,6 @@ export const metadata = {
             "application/json+oembed": "/api/oembed",
         },
     },
-    robots: {
-        index: false,
-    },
 };
 
 export default function Page() {

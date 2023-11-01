@@ -16,11 +16,11 @@ export const metadata = {
             },
         ],
     },
-    alternates: {
-        types: {
-            "application/json+oembed": "/api/oembed-gif",
-        },
-    },
+    // alternates: {
+    //     types: {
+    //         "application/json+oembed": "/api/oembed-gif",
+    //     },
+    // },
 };
 
 export default function Page() {

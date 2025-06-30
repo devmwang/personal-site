@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import useInView from "@src/hooks/useInView";
 import { GitHub } from "react-feather";
 
 import styles from "@src/styles/index.module.scss";
@@ -251,111 +252,21 @@ const SkillsSection = ({
     baseDelay: number;
     inBetweenDelay: number;
 }) => {
-    // Visibility States
-    const [isSectionTitleVisible, setSectionTitleVisible] = useState(false);
-
-    const [isLanguagesTitleVisible, setLanguagesTitleVisible] = useState(false);
-    const [isLanguagesVisible, setLanguagesVisible] = useState(false);
-
-    const [isTechnologiesTitleVisible, setTechnologiesTitleVisible] =
-        useState(false);
-    const [isTechnologiesVisible, setTechnologiesVisible] = useState(false);
-
-    const [isToolsTitleVisible, setToolsTitleVisible] = useState(false);
-    const [isToolsVisible, setToolsVisible] = useState(false);
-
-    // useRefs
     const sectionTitle = useRef(null);
-
     const languagesTitle = useRef(null);
     const languagesContainer = useRef(null);
-
     const technologiesTitle = useRef(null);
     const technologiesContainer = useRef(null);
-
     const toolsTitle = useRef(null);
     const toolsContainer = useRef(null);
 
-    // On mount
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const entry = entries[0];
-
-                if (entry!.isIntersecting) {
-                    switch (entry!.target) {
-                        case sectionTitle.current:
-                            setSectionTitleVisible(true);
-                            break;
-
-                        case languagesTitle.current:
-                            setLanguagesTitleVisible(true);
-                            break;
-
-                        case languagesContainer.current:
-                            setLanguagesVisible(true);
-                            break;
-
-                        case technologiesTitle.current:
-                            setTechnologiesTitleVisible(true);
-                            break;
-
-                        case technologiesContainer.current:
-                            setTechnologiesVisible(true);
-                            break;
-
-                        case toolsTitle.current:
-                            setToolsTitleVisible(true);
-                            break;
-
-                        case toolsContainer.current:
-                            setToolsVisible(true);
-                            break;
-                    }
-                }
-            },
-            { rootMargin: "-2%", threshold: 1.0 },
-        );
-
-        const localSectionTitle = sectionTitle.current;
-
-        const localLanguagesTitle = languagesTitle.current;
-        const localLanguagesContainer = languagesContainer.current;
-
-        const localTechnologiesTitle = technologiesTitle.current;
-        const localTechnologiesContainer = technologiesContainer.current;
-
-        const localToolsTitle = toolsTitle.current;
-        const localToolsContainer = toolsContainer.current;
-
-        if (localSectionTitle) observer.observe(localSectionTitle);
-
-        if (localLanguagesTitle) observer.observe(localLanguagesTitle);
-        if (localLanguagesContainer) observer.observe(localLanguagesContainer);
-
-        if (localTechnologiesTitle) observer.observe(localTechnologiesTitle);
-        if (localTechnologiesContainer)
-            observer.observe(localTechnologiesContainer);
-
-        if (localToolsTitle) observer.observe(localToolsTitle);
-        if (localToolsContainer) observer.observe(localToolsContainer);
-
-        return () => {
-            if (localSectionTitle) observer.unobserve(localSectionTitle);
-
-            if (localLanguagesTitle) observer.unobserve(localLanguagesTitle);
-            if (localLanguagesContainer)
-                observer.unobserve(localLanguagesContainer);
-
-            if (localTechnologiesTitle)
-                observer.unobserve(localTechnologiesTitle);
-            if (localTechnologiesContainer)
-                observer.unobserve(localTechnologiesContainer);
-
-            if (localToolsTitle) observer.unobserve(localToolsTitle);
-            if (localToolsContainer) observer.unobserve(localToolsContainer);
-        };
-    }, []);
+    const isSectionTitleVisible = useInView(sectionTitle);
+    const isLanguagesTitleVisible = useInView(languagesTitle);
+    const isLanguagesVisible = useInView(languagesContainer);
+    const isTechnologiesTitleVisible = useInView(technologiesTitle);
+    const isTechnologiesVisible = useInView(technologiesContainer);
+    const isToolsTitleVisible = useInView(toolsTitle);
+    const isToolsVisible = useInView(toolsContainer);
 
     const displayFormatter = (item: IconDetails) => {
         const { description, iconComponent } = item;

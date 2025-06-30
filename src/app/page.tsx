@@ -119,7 +119,7 @@ const SideLinks = ({
         }, revealDelay);
 
         return () => clearTimeout(timeout);
-    });
+    }, [revealDelay]);
 
     // * Link List Items
     const sideLinkItems = linkList.map((linkItem, index) => {
@@ -355,7 +355,7 @@ const SkillsSection = ({
             if (localToolsTitle) observer.unobserve(localToolsTitle);
             if (localToolsContainer) observer.unobserve(localToolsContainer);
         };
-    });
+    }, []);
 
     const displayFormatter = (item: IconDetails) => {
         const { description, iconComponent } = item;

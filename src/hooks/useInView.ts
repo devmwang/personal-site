@@ -1,7 +1,7 @@
-import { useEffect, useState, RefObject } from "react";
+import { useEffect, useState, type RefObject } from "react";
 
-export default function useInView(
-    ref: RefObject<Element>,
+export default function useInView<T extends Element>(
+    ref: RefObject<T | null>,
     options: IntersectionObserverInit = {
         rootMargin: "0px 0px -20% 0px",
         threshold: 0.1,

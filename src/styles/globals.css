@@ -1,6 +1,42 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+    --breakpoint-*: initial;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+    --breakpoint-3xl: 1792px;
+    --breakpoint-4xl: 2048px;
+
+    --color-white: #fffefd;
+    --color-bright: #c9c5bd;
+    --color-accent: #00c3d8;
+    --color-gray: #545454;
+    --color-dark: #303030;
+    --color-background: #0b0b0c;
+
+    --transition-delay-0: 0ms;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}
 
 ::-webkit-scrollbar {
     @apply w-2;
@@ -13,4 +49,9 @@
 ::-webkit-scrollbar-thumb {
     @apply bg-neutral-600;
     @apply rounded-full;
+}
+
+.icon-currentColor path {
+    fill: currentColor;
+    stroke: currentColor;
 }
